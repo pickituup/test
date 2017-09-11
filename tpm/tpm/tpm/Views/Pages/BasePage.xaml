@@ -6,7 +6,14 @@
     x:Class="tpm.Views.Pages.BasePage"
     BackgroundColor="White">
     
-    <Grid>
+    <Grid
+        x:Name="_rootGrid_Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="*"/>
+            <RowDefinition
+                Height="0"/>
+        </Grid.RowDefinitions>
         <Grid
             ColumnSpacing="0"
             RowSpacing="0">
@@ -15,8 +22,6 @@
                     Height="Auto"/>
                 <RowDefinition
                     Height="*"/>
-                <RowDefinition
-                    Height="0"/>
             </Grid.RowDefinitions>
 
 <!--Action bar spot-->
@@ -31,10 +36,14 @@
 
 <!--Menu spot-->
         <ContentView
-            x:Name="_menuSpot_ContentView"/>
+            x:Name="_menuSpot_ContentView"
+            Grid.Row="1"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill"/>
 
 <!--Busy indicator-->
         <controls:ExtendedSimpleIndicator
-            x:Name="_indicator_ExtendedSimpleIndicator"/>
+            x:Name="_indicator_ExtendedSimpleIndicator"
+            Grid.Row="1"/>
     </Grid>
 </ContentPage>

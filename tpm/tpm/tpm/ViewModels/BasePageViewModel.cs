@@ -34,8 +34,7 @@ namespace tpm.ViewModels {
             MenuItems = _menuContainer.BuildMenuItems();
             Menu = new MenuView() {
                 IsVisible = false,
-                Opacity = 0,
-                TranslationX = _xTranslation
+                Opacity = 0
             };
 
             ShowMenuCommand = new XF.Command(() => {
@@ -44,19 +43,22 @@ namespace tpm.ViewModels {
                 // interaction with underlying elements.
                 //
                 //Menu.TranslationX = 0;
-                MenuIndicatorTranslationImpact(Menu, true);
+                //MenuIndicatorTranslationImpact(Menu, true);
 
+                XF.Grid.SetRow(Menu.Parent, 0);
                 Menu.ShowMenu();
             });
 
             HideMenuCommand = new XF.Command(() => {
                 Menu.HideMenu();
+
+                XF.Grid.SetRow(Menu.Parent, 1);
                 //
                 // On iOS it's not enough to set opacity 0 for "menu and loading indicator", they still will block 
                 // interaction with underlying elements.
                 //
                 //Menu.TranslationX = _xTranslation;
-                MenuIndicatorTranslationImpact(Menu, false);
+                //MenuIndicatorTranslationImpact(Menu, false);
             });
 
 
@@ -121,17 +123,5 @@ namespace tpm.ViewModels {
         /// Hide menu
         /// </summary>
         public ICommand HideMenuCommand { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void MenuIndicatorTranslationImpact(XF.View view, bool isActive) {
-            if (isActive) {
-                view.TranslationX = 0;
-            }
-            else {
-                view.TranslationX = _xTranslation;
-            }
-        }
     }
 }

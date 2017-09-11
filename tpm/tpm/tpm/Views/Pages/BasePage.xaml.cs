@@ -117,10 +117,10 @@ namespace tpm.Views.Pages {
             _indicator_ExtendedSimpleIndicator.IsVisible = IsAwaiting;
 
             if (IsAwaiting) {
-                _indicator_ExtendedSimpleIndicator.TranslationX = 0;
+                Grid.SetRow(_indicator_ExtendedSimpleIndicator, 0);
             }
             else {
-                _indicator_ExtendedSimpleIndicator.TranslationX = -3000;
+                Grid.SetRow(_indicator_ExtendedSimpleIndicator, 1);
             }
         }
 

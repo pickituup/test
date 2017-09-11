@@ -32,14 +32,14 @@
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>False</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <BundleAssemblies>False</BundleAssemblies>
@@ -47,7 +47,7 @@
     <Debugger>.Net (Xamarin)</Debugger>
     <AotAssemblies>False</AotAssemblies>
     <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
     <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
