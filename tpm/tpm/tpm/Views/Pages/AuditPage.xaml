@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tpm.Views.Pages"
+    xmlns:actionBars="clr-namespace:tpm.Views.CompoundedViews"
+    xmlns:menus="clr-namespace:tpm.Views.CompoundedViews.Menu"
+    xmlns:compoundedViews="clr-namespace:tpm.Views.CompoundedViews"
+    x:Class="tpm.Views.Pages.AuditPage"
+    IsAwaiting="{Binding Path=IsAwaiting}"
+    Menu="{Binding 
+        Path=Menu}">
+
+    <local:BasePage.ActionBar>
+        <!--Old action bar with toogled 'Completed' button-->
+        <!--<actionBars:AuditActionBar/>-->
+        <actionBars:CommonActionBar/>
+    </local:BasePage.ActionBar>
+
+    <local:BasePage.MainContent>
+
+<!--Shared spot for assesment, form, questions views-->
+        <ContentView
+            Content="{Binding Path=ViewSection}">
+        </ContentView>
+    </local:BasePage.MainContent>
+</local:BasePage>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:ActionBarBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tpm.Views.CompoundedViews"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    x:Class="tpm.Views.CompoundedViews.AuditActionBar">
+
+    <local:ActionBarBase.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="image_buttoned_style"
+                TargetType="Image">
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center"/>
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Center"/>
+                <Setter
+                    Property="WidthRequest"
+                    Value="50"/>
+                <Setter
+                    Property="HeightRequest"
+                    Value="50"/>
+            </Style>
+        </ResourceDictionary>
+    </local:ActionBarBase.Resources>
+
+    <StackLayout
+        Spacing="0">
+        <Grid
+            Padding="10,5"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                Width="Auto"/>
+                <ColumnDefinition
+                Width="*"/>
+                <ColumnDefinition
+                Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <Style
+                    TargetType="Label">
+                        <Setter
+                        Property="TextColor"
+                        Value="#202125"/>
+                        <Setter
+                        Property="FontAttributes"
+                        Value="Bold"/>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <!--Menu section-->
+            <Image
+            Style="{StaticResource Key=image_buttoned_style}"
+            Source="{toolkitExtensions:ImageResourceExtension 
+                Source=tpm.Resourses.Img.ic_hamburger.png}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=ShowMenuCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!--Actionbar header-->
+            <Label
+                Margin="7,0,0,0"
+                Grid.Column="1"
+                VerticalOptions="Center"
+                FontSize="Large"
+                Text="{Binding Path=ActionBarHeader}"/>
+
+            <StackLayout
+            IsVisible="{Binding Path=IsVisibleCompletededSection}"
+            VerticalOptions="Center"
+            Grid.Column="2"
+            Orientation="Horizontal">
+
+                <Label
+                VerticalTextAlignment="Center"
+                FontSize="Small"
+                Text="Completed"/>
+
+                <Image
+                Style="{StaticResource Key=image_buttoned_style}"
+                Source="{toolkitExtensions:ImageResourceExtension 
+                    Source=tpm.Resourses.Img.ic_send_plane_in_circle.png}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Path=CompletedCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </Grid>
+
+        <!--Underline through action bar-->
+        <BoxView
+            Grid.ColumnSpan="3"
+            Color="#e2e2ea"
+            HeightRequest="2"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="End"/>
+    </StackLayout>
+</local:ActionBarBase>

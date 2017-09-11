@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    xmlns:toolkitConverters="clr-namespace:tpm.ToolKit.ValueConverters"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    x:Class="tpm.Views.CompoundedViews.TrainingToolsMaterialsBlockView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <toolkitConverters:StringToBoolConverter 
+                x:Key="string_to_bool_converter"/>
+
+            <!--Imlicit text color style for Label-->
+            <Style
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="#202125"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid
+        RowSpacing="0"
+        ColumnSpacing="0"
+        Padding="20,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="30"/>
+            <ColumnDefinition
+                Width="*"/>
+            <ColumnDefinition
+                Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Index-->
+        <Label
+            Grid.Column="0"
+            Grid.Row="0"
+            TextColor="#d9d9e4"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            Text="{Binding Path=TrainingsToolItem.Index,
+                StringFormat='{0}.'}"/>
+
+        <!--Tarining tool Header-->
+        <ContentView
+            Grid.Column="1"
+            Grid.Row="0"
+            Padding="0,15">
+            <Label
+                Text="{Binding Path=TrainingsToolItem.Header}"
+                FontAttributes="Bold"/>
+        </ContentView>
+
+        <!--WebView container-->
+        <ContentView
+            x:Name="_webFrame_ExtendedWebView"
+            Padding="0,0,0,15"
+            Grid.Column="1"
+            Grid.Row="1"
+            HeightRequest="210"
+            IsVisible="{Binding Path=TrainingsToolItem.VideoSourceLink,
+                Converter={StaticResource Key=string_to_bool_converter}}">
+            <controls:ExtendedWebView
+                IsNotVisible="{Binding Path=WebViewIsNotVisible}"
+                Source="{Binding Path=TrainingsToolItem.VideoSourceLink}"/>
+        </ContentView>
+        
+        <!--Content container-->
+        <StackLayout
+            Padding="0,0,0,15"
+            Grid.Column="1"
+            Grid.Row="1"
+            IsVisible="{Binding Path=TrainingsToolItem.TextContent,
+                Converter={StaticResource Key=string_to_bool_converter}}">
+            
+            <!--Text content-->
+            <ContentView
+                Padding="0,0,0,15">
+                <Label
+                    TextColor="#676971"
+                    Text="{Binding Path=TrainingsToolItem.TextContent}"/>
+            </ContentView>
+
+            <!--Links section-->
+            <controls:ExtendedContentView
+                    CornerRadius="4"
+                    BorderThickness="3"
+                    BorderColor="#c1c1cc"
+                    Padding="9,5">
+                <StackLayout
+                    Orientation="Horizontal">
+                    
+                    <!--First item-->
+                    <StackLayout
+                        HorizontalOptions="StartAndExpand"
+                        Orientation="Horizontal">
+                        <Image
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            Source="{Binding Path=TrainingsToolItem.FirstItemIcon}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=GoThroughLinkCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            VerticalOptions="Center"
+                            Text="{Binding Path=TrainingsToolItem.FirstItemTitle}"
+                            FontSize="Micro"/>
+                    </StackLayout>
+
+                    <!--Second item-->
+                    <StackLayout
+                        IsVisible="{Binding Path=TrainingsToolItem.SecondItemTitle,
+                            Converter={StaticResource Key=string_to_bool_converter}}"
+                        HorizontalOptions="EndAndExpand"
+                        Orientation="Horizontal">
+                        <Label
+                            TextColor="#c1c1cf"
+                            FontSize="Micro"
+                            VerticalOptions="Center"
+                            Text="{Binding Path=TrainingsToolItem.SecondItemTitle}"/>
+                        <Image
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            Source="{Binding Path=TrainingsToolItem.SeondItemIcon}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=GoThroughLinkCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </StackLayout>
+            </controls:ExtendedContentView>
+        </StackLayout>
+
+        <!--UnderLine-->
+        <BoxView
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Color="#ebebf2"
+            HeightRequest="1"
+            HorizontalOptions="Fill"
+            VerticalOptions="End"/>
+    </Grid>
+</ContentView>

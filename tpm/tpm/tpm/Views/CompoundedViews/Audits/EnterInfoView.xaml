@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    x:Class="tpm.Views.CompoundedViews.EnterInfoView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Entry section-->
+        <StackLayout
+            Grid.Row="0">
+
+            <!--Information label-->
+            <ContentView
+                BackgroundColor="#f5f5f8"
+                Padding="45,5,0,5">
+                <Label
+                    FontSize="Medium"
+                    TextColor="#c5c5d1"
+                    Text="Information:"
+                    FontAttributes="Bold"/>
+            </ContentView>
+
+            <!--Information stack-->
+            <StackLayout
+                Padding="20,15">
+                <controls:ExtendedContentView
+                    CornerRadius="4"
+                    BorderThickness="3"
+                    BorderColor="#c1c1cc"
+                    Padding="9,0">
+                    <Entry
+                        TextColor="#202125"
+                        Text="{Binding Path=UserName,
+                            Mode=TwoWay}"
+                        Placeholder="Your name"/>
+                </controls:ExtendedContentView>
+            </StackLayout>
+
+            <!--Company information label-->
+            <ContentView
+                BackgroundColor="#f5f5f8"
+                Padding="45,5,0,5">
+                <Label
+                    FontSize="Medium"
+                    TextColor="#c5c5d1"
+                    Text="Company information:"
+                    FontAttributes="Bold"/>
+            </ContentView>
+
+            <!--Company information stack-->
+            <StackLayout
+                Padding="20,15">
+                <controls:ExtendedContentView
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc"
+                Padding="9,0">
+                    <Entry
+                    TextColor="#202125"
+                    Text="{Binding Path=ComanyName,
+                        Mode=TwoWay}"
+                    Placeholder="Company name"/>
+                </controls:ExtendedContentView>
+
+                <controls:ExtendedContentView
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc"
+                Padding="9,0">
+                    <Entry
+                    TextColor="#202125"
+                    Text="{Binding Path=CompanyAddress,
+                        Mode=TwoWay}"
+                    Placeholder="Company address"/>
+                </controls:ExtendedContentView>
+
+                <controls:ExtendedContentView
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc"
+                Padding="9,0">
+                    <Entry
+                    TextColor="#202125"
+                    Text="{Binding Path=CompanyCityStateZip,
+                        Mode=TwoWay}"
+                    Placeholder="City, State, Zip"/>
+                </controls:ExtendedContentView>
+
+                <controls:ExtendedContentView
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc"
+                Padding="9,0">
+                    <Entry
+                    TextColor="#202125"
+                    Text="{Binding Path=CompanySpecificLocation,
+                        Mode=TwoWay}"
+                    Placeholder="Specific location"/>
+                </controls:ExtendedContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout
+            Padding="20,0"
+            Spacing="20"
+            Grid.Row="1"
+            Orientation="Horizontal">
+
+            <controls:ExtendedContentView
+                Padding="0,7"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=BackCommand}"/>
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    TextColor="#347cff"
+                    Text="Back"/>
+            </controls:ExtendedContentView>
+
+            <controls:ExtendedContentView
+                Padding="0,7"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="4"
+                BackgroundColor="#347cff">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=NextCommand}"/>
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
+                    Text="Next"/>
+            </controls:ExtendedContentView>
+        </StackLayout>
+    </Grid>
+</ContentView>

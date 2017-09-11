@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:MenuBase
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:tpm.Views.CompoundedViews.Menu"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    x:Class="tpm.Views.CompoundedViews.Menu.MenuView"
+    BackgroundColor="White">
+    <local:MenuBase.Resources>
+        <ResourceDictionary>
+            <!--Imlicit text color style for Label-->
+            <Style
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="#202125"/>
+            </Style>
+        </ResourceDictionary>
+    </local:MenuBase.Resources>
+
+    <Grid
+        ColumnSpacing="0"
+        RowSpacing="0">
+
+        <!--That column/row definitions simply divide grid on 9 pieces, middle area wil be used for main content
+        and top left for close button-->
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="60"/>
+            <RowDefinition
+                Height="*"/>
+            <RowDefinition
+                Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="60"/>
+            <ColumnDefinition
+                Width="*"/>
+            <ColumnDefinition
+                Width="60"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Close button spot-->
+        <ContentView>
+            <Image
+                Margin="10,0,0,0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="30"
+                HeightRequest="30"
+                Aspect="AspectFill"
+                Source="{toolkitExtensions:ImageResourceExtension 
+                    Source=tpm.Resourses.Img.ic_decline_no_border_blue.png}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=HideMenuCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </ContentView>
+
+        <!--Main content spot-->
+        <ContentView
+            Grid.Column="1"
+            Grid.Row="1">
+
+            <controls:StackList
+                ItemsSource="{Binding Path=MenuItems}"
+                SelectedItem="{Binding Path=SelectedMenuItem, 
+                    Mode=TwoWay}"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand">
+                <controls:StackList.ItemTemplate>
+                    <DataTemplate>
+                        <local:MenuItemView/>
+                    </DataTemplate>
+                </controls:StackList.ItemTemplate>
+            </controls:StackList>
+        </ContentView>
+    </Grid>
+</local:MenuBase>

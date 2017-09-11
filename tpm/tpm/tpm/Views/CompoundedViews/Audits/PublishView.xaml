@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    x:Class="tpm.Views.CompoundedViews.PublishView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!--Imlicit text color style for Label-->
+            <Style
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="#202125"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <StackLayout
+        Spacing="30"
+        Padding="30,40">
+
+        <Image
+            WidthRequest="120"
+            HeightRequest="120"
+            HorizontalOptions="Center"
+            Source="{toolkitExtensions:ImageResourceExtension 
+                        Source=tpm.Resourses.Img.ic_mail.png}"/>
+
+        <Label
+            Text="Type your e-mail to receive a file with your answers"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"/>
+
+        <!--Company name input-->
+        <controls:ExtendedContentView
+            CornerRadius="4"
+            BorderThickness="3"
+            BorderColor="#c1c1cc"
+            Padding="9,0">
+            <Entry
+                TextColor="#202125"
+                Text="{Binding Path=EmailAddress,
+                            Mode=TwoWay}"
+                Placeholder="E-mail"/>
+        </controls:ExtendedContentView>
+
+        <StackLayout
+            Spacing="20"
+            Orientation="Horizontal">
+
+            <controls:ExtendedContentView
+                Padding="0,7"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="4"
+                BorderThickness="3"
+                BorderColor="#c1c1cc">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=HomeCommand}"/>
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    TextColor="#347cff"
+                    Text="Home"/>
+            </controls:ExtendedContentView>
+
+            <controls:ExtendedContentView
+                Padding="0,7"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="4"
+                BackgroundColor="#347cff">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=PublishCommand}"/>
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
+                    Text="Submit"/>
+            </controls:ExtendedContentView>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:StackListItemBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitConverters="clr-namespace:tpm.ToolKit.ValueConverters"
+    x:Class="tpm.Views.CompoundedViews.Menu.MenuItemView"
+    x:Name="_root_StackListItem"
+    Padding="0,25">
+    <controls:StackListItemBase.Resources>
+        <ResourceDictionary>
+            <toolkitConverters:BoolToGenericObjectConverter 
+                x:Key="bool_to_bold_converter"
+                x:TypeArguments="FontAttributes"
+                TrueObject="Bold"
+                FalseObject="None"/>
+
+        </ResourceDictionary>
+    </controls:StackListItemBase.Resources>
+    
+    <Label
+        x:Name="_outputText_Label"
+        HorizontalTextAlignment="Center"
+        FontSize="Large"
+        Text="{Binding Path=Title}"
+        FontAttributes="{Binding Path=IsSelected,Converter={StaticResource Key=bool_to_bold_converter}}">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{Binding Source={Reference Name=_root_StackListItem},
+                    Path=ItemSelectCommand}}"/>
+        </Label.GestureRecognizers>
+    </Label>
+</controls:StackListItemBase>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:tpm.Views.Pages"
+    xmlns:actionBars="clr-namespace:tpm.Views.CompoundedViews"
+    xmlns:menus="clr-namespace:tpm.Views.CompoundedViews.Menu"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:compoundedViews="clr-namespace:tpm.Views.CompoundedViews"
+    xmlns:toolkitEffects="clr-namespace:tpm.ToolKit.Effects"
+    x:Class="tpm.Views.Pages.AboutPage"
+    Menu="{Binding Path=Menu}">
+    <local:BasePage.Resources>
+        <ResourceDictionary>
+            <!--Imlicit text color style for Label-->
+            <Style
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="#676971"/>
+            </Style>
+            <Style
+                x:Key="blockHeaderStyle"
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="#202125"/>
+                <Setter
+                    Property="FontAttributes"
+                    Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </local:BasePage.Resources>
+
+    <local:BasePage.ActionBar>
+        <actionBars:CommonActionBar/>
+    </local:BasePage.ActionBar>
+
+    <local:BasePage.MainContent>
+        <ScrollView>
+            <StackLayout
+                Spacing="18"
+                Padding="22,18,0,18">
+                
+                <StackLayout
+                    Spacing="18"
+                    Padding="0,0,22,0">
+                <Label
+                    Text="Funding and support for this project has been provided by 
+the State of Washington, Department of Labor &amp; Industries, Safety &amp; Health Investment Projects."/>
+
+                <StackLayout
+                    Spacing="0">
+                    <Label
+                        Text="Website">
+                        <Label.Effects>
+                            <toolkitEffects:UnderlineEffect/>
+                        </Label.Effects>
+                    </Label>
+                    <Label
+                        Text="Timber Products Manufacturers Association – A great business resource for 
+companies in the wood products industry. Human Resources, Employment Law, 
+Safety Audits/Trainings, and Employee Benefits."/>
+                    
+                    <Label
+                        Text="National Fire Protection Association">
+                        <Label.Effects>
+                            <toolkitEffects:UnderlineEffect/>
+                        </Label.Effects>
+                    </Label>
+                    
+                    <Label
+                        Text="OSHA Combutible Dust National Emphasis Program">
+                        <Label.Effects>
+                            <toolkitEffects:UnderlineEffect/>
+                        </Label.Effects>
+                    </Label>
+
+                    <Label
+                        Text="WA Labor and Industries Combustible Dust">
+                        <Label.Effects>
+                            <toolkitEffects:UnderlineEffect/>
+                        </Label.Effects>
+                    </Label>
+
+                    <Label
+                        Text="Resources and Information">
+                        <Label.Effects>
+                            <toolkitEffects:UnderlineEffect/>
+                        </Label.Effects>
+                    </Label>
+                </StackLayout>
+
+                <Label
+                    Text="For over 90 years, the Timber Products Manufacturers Association has been assisting 
+companies in the timber and wood products industry by providing professional services, programs and advice. 
+Our staff offers a high degree of experience, education and training as well as an overriding commitment 
+to quality. Membership provides access to a wealth of knowledge and expertise and the opportunity to 
+enroll in exclusive employee benefit programs not available to the public. Members support one another and 
+their industry. Join TPM today and you too can become an industry leader and garner the benefits of our 
+collective strength in numbers."/>
+
+                <Label
+                    Text="Managing the &quot;people&quot; side of any business requires insight into human nature as well as thorough knowledge
+of government laws and regulations – two very different sides of the same coin. A membership investment in
+TPM gives you access to a team of industry professionals who can provide solutions to your toughest Human
+Resource, Safety and Employee Benefits challenges. These professionals provide you with unparalleled support
+and expertise to augment the work of your employees charged with these responsibilities."/>
+                </StackLayout>
+                <BoxView
+                    Color="#ebebf2"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"/>
+                <StackLayout
+                    Spacing="18"
+                    Padding="0,0,22,0">
+                    
+                    <Label
+                    Text="HUMAN RESOURCES"
+                        Style="{StaticResource Key=blockHeaderStyle}"/>
+
+                <Label
+                    Text="TPM has seasoned Human Resource professionals on staff. If you have a question, need sample materials, or
+want a second opinion, help is just a phone call away."/>
+
+                <ContentView
+                    Padding="22,0,0,0">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span 
+                                    Text="&#x2014; Newsletter and Briefings &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Employment Law &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; HR Policies &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Drug &amp; Alcohol Awareness Training &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Discrimination Complaint Resolution &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Employee Handbooks &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Unemployment Issues &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Customized On-Site Training &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Employment Forms &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Annual Compensation Survey &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Affirmative Action Plans &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Human Resources Audits &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Organizational Development &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Strategic Visioning &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Employee Opinion Surveys &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Union Avoidance &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Labor Dispute Resolution &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Arbitration &amp; Mediation &#x0a;"/>
+                                    <Span 
+                                    Text="&#x2014; Human Resource Information Systems (HRIS)"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </ContentView>
+
+                </StackLayout>
+                <BoxView
+                    Color="#ebebf2"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Padding="0,0,22,0"
+                    Spacing="18">
+                    
+                <Label
+                    Text="SAFETY &amp; RISK MANAGEMENT"
+                    Style="{StaticResource Key=blockHeaderStyle}"/>
+
+                <Label
+                    Text="TPM offers a range of safety and risk management services for its members."/>
+
+                <Label
+                    Text="In-hours staff conduct on-site accident investigations, safety audits, ergonomic studies, sound level surveys and
+will assist members in the legal process should a violation occur."/>
+
+                <StackLayout
+                    Spacing="0"
+                    Padding="22,0,0,0">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span 
+                                        Text="&#x2014; Safety Polices &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Safety Training &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Facility/Safety Audits &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Regulatory Agency Updates &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Accident Investigations &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Safety Program Audits &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Ergonomic Studies &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Sound Level Surveys &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Representation at OSHA Hearings &#x0a;"/>
+                                    <Span 
+                                        Text="&#x2014; Workers'Compensation Programs"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <ContentView
+                        Padding="22,0,0,0">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span 
+                                            Text="&#x26AC; Claims Review &#x0a;"/>
+                                        <Span 
+                                            Text="&#x26AC; Consultation and Hearings &#x0a;"/>
+                                        <Span 
+                                            Text="&#x26AC; Loss Control &#x0a;"/>
+                                        <Span 
+                                            Text="&#x26AC; Risk Management"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </ContentView>
+                </StackLayout>
+                </StackLayout>
+                <BoxView
+                    Color="#ebebf2"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Spacing="18"
+                    Padding="0,0,22,0">
+                    
+                
+                <Label
+                    Text="EMPLOYEE BENEFITS &amp; INSURANCE PROGRAMS"
+                    Style="{StaticResource Key=blockHeaderStyle}"/>
+
+                <Label
+                    Text="TPM is known for its competitive array of health, vision, dental and other employee benefits. These programs
+are offered exclusively to members of the association."/>
+
+                <StackLayout
+                    Spacing="0"
+                    Padding="22,0,0,0">
+                    <Label
+                        Text="Employee Benefits Consulting"/>
+                    <Label
+                        Text="TPM Trust – Group Health Benefits"/>
+                    <StackLayout
+                        Spacing="0"
+                        Padding="22,0,0,0">
+                        <Label
+                            Text="Major Medical"/>
+                        <Label
+                            Text="Limited Medical"/>
+                        <Label
+                            Text="Dental"/>
+                        <Label
+                            Text="Vision"/>
+                    </StackLayout>
+                    <Label
+                        Text="Life"/>
+                    <Label
+                        Text="Short-term Disability"/>
+                    <Label
+                        Text="Employee Assistance Program"/>
+                    <Label
+                        Text="Flexible Benefits Program"/>
+                    <Label
+                        Text="Health Savings/Reimbursement Accounts"/>
+                    <Label
+                        Text="401 (k) Plan"/>
+                </StackLayout>
+
+                <Label
+                    Text="Every organization has different needs in education and training employees."/>
+
+                <Label
+                    Text="TPM takes into account the uniqueness of each of our members in designing specific programs to keep
+employees performing at their highest levels."/>
+                
+                <Label
+                    Text="Our team of professionals can design a training program specific to your needs or assist you in the areas of
+human resources, safety, employee benefits and business planning."/>
+
+                <StackLayout
+                    Spacing="0">
+                    <Label
+                        Text="Timber Products Manufactures"/>
+                    <Label
+                        Text="951 East Third Avenue"/>
+                    <Label
+                        Text="Spokane, WA 99201"/>
+                    <Label
+                        Text="(509) 535-4646 phone"/>
+                    <Label
+                        Text="(877) 535-4646 toll free"/>
+                    <Label
+                        Text="(509) 534-6106 fax"/>
+                </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </local:BasePage.MainContent>
+</local:BasePage>

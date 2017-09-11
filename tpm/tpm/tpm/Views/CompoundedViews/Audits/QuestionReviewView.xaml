@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:tpm.Views.CompoundedViews"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitConverters="clr-namespace:tpm.ToolKit.ValueConverters"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    x:Class="tpm.Views.CompoundedViews.QuestionReviewView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <toolkitConverters:Base64ToImageSourceConverter 
+                x:Key="base64_to_imageSource_converter"/>
+            <toolkitConverters:CommentToFormatedStringConverter 
+                x:Key="comment_to_formatedString_converter"/>
+            <toolkitConverters:BoolToGenericObjectConverter 
+                x:Key="bool_to_green_or_red_color_converter"
+                x:TypeArguments="Color"
+                TrueObject="#26c95f"
+                FalseObject="#f65454"/>
+            <toolkitConverters:BoolToStringConverter 
+                x:Key="bool_to_yes_no_string_converter"
+                TrueText="Yes"
+                FalseText="No"/>
+            <toolkitConverters:BoolToGenericObjectConverter 
+                x:Key="bool_to_imageSource_comments_converter"
+                x:TypeArguments="ImageSource"
+                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_selected.png}"
+                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_not_selected.png}"/>
+
+            <toolkitConverters:BoolToGenericObjectConverter 
+                x:Key="bool_to_imageSource_images_converter"
+                x:TypeArguments="ImageSource"
+                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_selected.png}"
+                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_not_selected.png}"/>
+
+            <toolkitConverters:BoolToGenericObjectConverter 
+                x:Key="bool_to_color_image_comment_selection_converter"
+                x:TypeArguments="Color"
+                TrueObject="#202125"
+                FalseObject="#c1c1cc"/>
+            
+            <Style
+                TargetType="Image"
+                x:Key="comments_images_tooglers">
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center"/>
+                <Setter
+                    Property="Aspect"
+                    Value="AspectFill"/>
+                <Setter
+                    Property="WidthRequest"
+                    Value="16"/>
+                <Setter
+                    Property="HeightRequest"
+                    Value="13"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid
+        ColumnSpacing="0"
+        RowSpacing="0"
+        Padding="0,15,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="52"/>
+            <ColumnDefinition
+                Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+        </Grid.RowDefinitions>
+
+<!--Question index-->
+        <ContentView>
+            <Label
+                Text="{Binding Path=Question.Index,
+                    StringFormat='{0}.'}"
+                TextColor="#d9d9e4"
+                HorizontalTextAlignment="End"
+                Margin="0,0,19,0"/>
+        </ContentView>
+
+<!--Question text spot-->
+        <ContentView
+            Grid.Column="1"
+            Padding="0,0,60,0">
+            <Label
+                TextColor="#202125"
+                Text="{Binding Path=Question.QuestionMessage}"/>
+        </ContentView>
+
+<!--Question controls spot-->
+        <Grid
+            RowSpacing="0"
+            ColumnSpacing="0"
+            Grid.Column="1"
+            Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition 
+                    Height="Auto"/>
+                <RowDefinition 
+                    Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout
+                Padding="0,13,17,13"
+                Spacing="10"
+                Orientation="Horizontal">
+
+<!--Comments clickable section-->
+                <ContentView
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start">
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Path=ToggleCommentsVisibilityCommand}"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Image
+                            Style="{StaticResource Key=comments_images_tooglers}"
+                            Source="{Binding Path=IsVisibleCommentsSection,
+                                Converter={StaticResource Key=bool_to_imageSource_comments_converter}}"/>
+
+                        <Label
+                            Margin="3,0,0,0"
+                            Text="{Binding Path=CommentsCount,
+                                StringFormat='{0} comments'}"
+                            TextColor="{Binding Path=IsVisibleCommentsSection,
+                                Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}"/>
+                    </StackLayout>
+                </ContentView>
+
+<!--Images clickable section-->
+                <ContentView
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start">
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Path=ToggleImagesVisibilityCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                        
+                        <Image
+                            Style="{StaticResource Key=comments_images_tooglers}"
+                            Source="{Binding Path=IsVisibleImagesSection,
+                                Converter={StaticResource Key=bool_to_imageSource_images_converter}}"/>
+
+                        <Label
+                            Margin="3,0,0,0"
+                            Text="{Binding Path=ImagesCount,
+                                StringFormat='{0} images'}"
+                            TextColor="{Binding Path=IsVisibleImagesSection,
+                                Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}"/>
+                    </StackLayout>
+                </ContentView>
+            </StackLayout>
+        </Grid>
+
+<!--Attachments section-->
+        <ContentView
+            Grid.Column="1"
+            Grid.Row="2"
+            BackgroundColor="Transparent">
+
+<!--Shared spot for images/comments-->
+            <Grid
+                ColumnSpacing="0"
+                RowSpacing="0">
+
+<!--Comment attachment spot-->
+                <ContentView
+                    IsVisible="{Binding Path=IsVisibleCommentsSection,
+                        Mode=TwoWay}">
+                    <Grid
+                        Padding="0,0,17,0"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*"/>
+                            <ColumnDefinition
+                                Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto"/>
+                            <RowDefinition
+                                Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+<!--Comments stack-->
+                        <controls:StackList
+                            Grid.ColumnSpan="2"
+                            IsGrouped="False"
+                            ItemsSource="{Binding Path=Question.Comments}">
+                            <controls:StackList.ItemTemplate>
+                                <DataTemplate>
+                                    <local:EmptyStackListItemView>
+                                        <local:EmptyStackListItemView.Content>
+                                            <ContentView
+                                                Padding="0,4">
+                                                <Label
+                                                FormattedText="{Binding Converter={StaticResource Key=comment_to_formatedString_converter}}"/>
+                                            </ContentView>
+                                        </local:EmptyStackListItemView.Content>
+                                    </local:EmptyStackListItemView>
+                                </DataTemplate>
+                            </controls:StackList.ItemTemplate>
+                        </controls:StackList>
+                    </Grid>
+                </ContentView>
+
+<!--Image attachment spot-->
+                <ContentView
+                    IsVisible="{Binding Path=IsVisibleImagesSection,
+                        Mode=TwoWay}">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto"/>
+                            <RowDefinition
+                                Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+<!--Images stack-->
+                        <controls:StackList
+                            IsGrouped="False"
+                            ItemsSource="{Binding Path=Question.Images}">
+                            <controls:StackList.ItemTemplate>
+                                <DataTemplate>
+                                    <local:EmptyStackListItemView>
+                                        <local:EmptyStackListItemView.Content>
+                                            <ContentView
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Start"
+                                                WidthRequest="150"
+                                                HeightRequest="150">
+                                                <ContentView
+                                                    Padding="0,4">
+                                                    <Image
+                                                    Source="{Binding Path=Base64Image, 
+                                                        Converter={StaticResource Key=base64_to_imageSource_converter}}"
+                                                    Aspect="AspectFill"/>
+                                                </ContentView>
+                                            </ContentView>
+                                        </local:EmptyStackListItemView.Content>
+                                    </local:EmptyStackListItemView>
+                                </DataTemplate>
+                            </controls:StackList.ItemTemplate>
+                        </controls:StackList>
+                    </Grid>
+                </ContentView>
+            </Grid>
+        </ContentView>
+
+<!--Answer-->
+        <Frame
+            BackgroundColor="{Binding Path=Question.Answer,
+                Converter={StaticResource Key=bool_to_green_or_red_color_converter}}"
+            HorizontalOptions="Start"
+            Grid.Column="1"
+            Grid.Row="3"
+            Padding="18,5"
+            HasShadow="False"
+            Margin="0,9,0,10">
+            <Label
+                TextColor="White"
+                Text="{Binding Path=Question.Answer,
+                    Converter={StaticResource Key=bool_to_yes_no_string_converter}}"/>
+        </Frame>
+        
+<!--If NO answer assumption-->
+        <Frame
+            IsVisible="{Binding Path=IsVisibleIfNoSection}"
+            Padding="45,20"
+            BackgroundColor="#f65454"
+            Grid.ColumnSpan="2"
+            Grid.Row="4"
+            HasShadow="False"
+            Margin="5">
+
+            <Label
+                TextColor="White"
+                Text="{Binding Path=Question.IfNoAnswer}"/>
+        </Frame>
+    </Grid>
+</ContentView>

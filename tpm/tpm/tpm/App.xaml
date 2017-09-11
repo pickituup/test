@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:menus="clr-namespace:tpm.Views.CompoundedViews.Menu"
+    x:Class="tpm.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--TODO: remove that 3 colors-->
+            <Color
+                x:Key="appGrayColorDark_Color">#c6c6c6</Color>
+            <Color
+                x:Key="appGrayColorLight_Color">#ececec</Color>
+            <Color
+                x:Key="main_text_color">#202125</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

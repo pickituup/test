@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:StackListItemBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    xmlns:toolkitConverters="clr-namespace:tpm.ToolKit.ValueConverters"
+    x:Class="tpm.Views.CompoundedViews.CommentItemView">
+    <controls:StackListItemBase.Resources>
+        <ResourceDictionary>
+            <toolkitConverters:CommentToFormatedStringConverter 
+                x:Key="comment_to_formatedString_converter"/>
+        </ResourceDictionary>
+    </controls:StackListItemBase.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition 
+                Width="*"/>
+            <ColumnDefinition 
+                Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <Label
+            FormattedText="{Binding Path=Comment,
+                Converter={StaticResource Key=comment_to_formatedString_converter}}"/>
+
+        <Image
+            Margin="0,0,6,3"
+            Grid.Column="1"
+            WidthRequest="25"
+            HeightRequest="25"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Source="{toolkitExtensions:ImageResourceExtension 
+                Source=tpm.Resourses.Img.ic_decline_no_border.png}"
+            Aspect="AspectFill">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding Path=DeleteCommentCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </Grid>
+</controls:StackListItemBase>

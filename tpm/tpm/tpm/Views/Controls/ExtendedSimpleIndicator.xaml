@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="tpm.Views.Controls.ExtendedSimpleIndicator">
+
+    <Grid
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill">
+        <BoxView
+            BackgroundColor="Black"
+            Opacity=".2"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill"/>
+        <ActivityIndicator
+            WidthRequest="30"
+            HeightRequest="30"
+            Color="White"
+            IsRunning="True"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+    </Grid>
+</ContentView>

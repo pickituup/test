@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    x:Class="tpm.Views.Pages.BasePage"
+    BackgroundColor="White">
+    
+    <Grid>
+        <Grid
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="*"/>
+            </Grid.RowDefinitions>
+
+<!--Action bar spot-->
+            <ContentView
+                x:Name="_actionBarSpot_ContentView"/>
+            
+<!--Main content spot-->
+            <ContentView
+                Grid.Row="1"
+                x:Name="_mainContentSpot_ContentView"/>
+        </Grid>
+
+<!--Menu spot-->
+        <ContentView
+            x:Name="_menuSpot_ContentView"/>
+
+        <controls:ExtendedSimpleIndicator
+            x:Name="_indicator_ExtendedSimpleIndicator"/>
+    </Grid>
+</ContentPage>
