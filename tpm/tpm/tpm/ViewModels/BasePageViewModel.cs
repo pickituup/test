@@ -43,7 +43,9 @@ namespace tpm.ViewModels {
                 // On iOS it's not enough to set opacity 0 for "menu and loading indicator", they still will block 
                 // interaction with underlying elements.
                 //
-                Menu.TranslationX = 0;
+                //Menu.TranslationX = 0;
+                MenuIndicatorTranslationImpact(Menu, true);
+
                 Menu.ShowMenu();
             });
 
@@ -53,8 +55,11 @@ namespace tpm.ViewModels {
                 // On iOS it's not enough to set opacity 0 for "menu and loading indicator", they still will block 
                 // interaction with underlying elements.
                 //
-                Menu.TranslationX = _xTranslation;
+                //Menu.TranslationX = _xTranslation;
+                MenuIndicatorTranslationImpact(Menu, false);
             });
+
+
         }
 
         /// <summary>
@@ -116,5 +121,17 @@ namespace tpm.ViewModels {
         /// Hide menu
         /// </summary>
         public ICommand HideMenuCommand { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void MenuIndicatorTranslationImpact(XF.View view, bool isActive) {
+            if (isActive) {
+                view.TranslationX = 0;
+            }
+            else {
+                view.TranslationX = _xTranslation;
+            }
+        }
     }
 }

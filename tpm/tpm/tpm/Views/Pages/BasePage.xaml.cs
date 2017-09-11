@@ -115,6 +115,13 @@ namespace tpm.Views.Pages {
         /// </summary>
         private void ToogleAwaiting() {
             _indicator_ExtendedSimpleIndicator.IsVisible = IsAwaiting;
+
+            if (IsAwaiting) {
+                _indicator_ExtendedSimpleIndicator.TranslationX = 0;
+            }
+            else {
+                _indicator_ExtendedSimpleIndicator.TranslationX = -3000;
+            }
         }
 
         /// <summary>
