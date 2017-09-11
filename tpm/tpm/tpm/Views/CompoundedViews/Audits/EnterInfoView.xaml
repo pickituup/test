@@ -1,150 +1,140 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tpm.Views.CompoundedViews.EnterInfoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:tpm.Views.Controls"
-    x:Class="tpm.Views.CompoundedViews.EnterInfoView">
+    xmlns:controls="clr-namespace:tpm.Views.Controls">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!--  Style for ExtendedContentView which wraps entry  -->
+            <Style x:Key="entry_wraper_style" TargetType="controls:ExtendedContentView">
+                <Setter Property="BorderColor" Value="#c1c1cc" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform
+                            x:TypeArguments="Thickness"
+                            Android="9,0"
+                            iOS="9,5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness">
+                    <Setter.Value>
+                        <OnPlatform
+                            x:TypeArguments="x:Int32"
+                            Android="3"
+                            iOS="1" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto"/>
-            <RowDefinition
-                Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!--Entry section-->
-        <StackLayout
-            Grid.Row="0">
+        <!--  Entry section  -->
+        <StackLayout Grid.Row="0">
 
-            <!--Information label-->
-            <ContentView
-                BackgroundColor="#f5f5f8"
-                Padding="45,5,0,5">
+            <!--  Information label  -->
+            <ContentView Padding="45,5,0,5" BackgroundColor="#f5f5f8">
                 <Label
+                    FontAttributes="Bold"
                     FontSize="Medium"
-                    TextColor="#c5c5d1"
                     Text="Information:"
-                    FontAttributes="Bold"/>
+                    TextColor="#c5c5d1" />
             </ContentView>
 
-            <!--Information stack-->
-            <StackLayout
-                Padding="20,15">
-                <controls:ExtendedContentView
-                    CornerRadius="4"
-                    BorderThickness="3"
-                    BorderColor="#c1c1cc"
-                    Padding="9,0">
+            <!--  Information stack  -->
+            <StackLayout Padding="20,15">
+                <controls:ExtendedContentView Style="{StaticResource Key=entry_wraper_style}">
                     <Entry
-                        TextColor="#202125"
-                        Text="{Binding Path=UserName,
-                            Mode=TwoWay}"
-                        Placeholder="Your name"/>
+                        Placeholder="Your name"
+                        Text="{Binding Path=UserName, Mode=TwoWay}"
+                        TextColor="#202125" />
                 </controls:ExtendedContentView>
             </StackLayout>
 
-            <!--Company information label-->
-            <ContentView
-                BackgroundColor="#f5f5f8"
-                Padding="45,5,0,5">
+            <!--  Company information label  -->
+            <ContentView Padding="45,5,0,5" BackgroundColor="#f5f5f8">
                 <Label
+                    FontAttributes="Bold"
                     FontSize="Medium"
-                    TextColor="#c5c5d1"
                     Text="Company information:"
-                    FontAttributes="Bold"/>
+                    TextColor="#c5c5d1" />
             </ContentView>
 
-            <!--Company information stack-->
-            <StackLayout
-                Padding="20,15">
-                <controls:ExtendedContentView
-                CornerRadius="4"
-                BorderThickness="3"
-                BorderColor="#c1c1cc"
-                Padding="9,0">
+            <!--  Company information stack  -->
+            <StackLayout Padding="20,15">
+                <controls:ExtendedContentView Style="{StaticResource Key=entry_wraper_style}">
                     <Entry
-                    TextColor="#202125"
-                    Text="{Binding Path=ComanyName,
-                        Mode=TwoWay}"
-                    Placeholder="Company name"/>
+                        Placeholder="Company name"
+                        Text="{Binding Path=ComanyName, Mode=TwoWay}"
+                        TextColor="#202125" />
                 </controls:ExtendedContentView>
 
-                <controls:ExtendedContentView
-                CornerRadius="4"
-                BorderThickness="3"
-                BorderColor="#c1c1cc"
-                Padding="9,0">
+                <controls:ExtendedContentView Style="{StaticResource Key=entry_wraper_style}">
                     <Entry
-                    TextColor="#202125"
-                    Text="{Binding Path=CompanyAddress,
-                        Mode=TwoWay}"
-                    Placeholder="Company address"/>
+                        Placeholder="Company address"
+                        Text="{Binding Path=CompanyAddress, Mode=TwoWay}"
+                        TextColor="#202125" />
                 </controls:ExtendedContentView>
 
-                <controls:ExtendedContentView
-                CornerRadius="4"
-                BorderThickness="3"
-                BorderColor="#c1c1cc"
-                Padding="9,0">
+                <controls:ExtendedContentView Style="{StaticResource Key=entry_wraper_style}">
                     <Entry
-                    TextColor="#202125"
-                    Text="{Binding Path=CompanyCityStateZip,
-                        Mode=TwoWay}"
-                    Placeholder="City, State, Zip"/>
+                        Placeholder="City, State, Zip"
+                        Text="{Binding Path=CompanyCityStateZip, Mode=TwoWay}"
+                        TextColor="#202125" />
                 </controls:ExtendedContentView>
 
-                <controls:ExtendedContentView
-                CornerRadius="4"
-                BorderThickness="3"
-                BorderColor="#c1c1cc"
-                Padding="9,0">
+                <controls:ExtendedContentView Style="{StaticResource Key=entry_wraper_style}">
                     <Entry
-                    TextColor="#202125"
-                    Text="{Binding Path=CompanySpecificLocation,
-                        Mode=TwoWay}"
-                    Placeholder="Specific location"/>
+                        Placeholder="Specific location"
+                        Text="{Binding Path=CompanySpecificLocation, Mode=TwoWay}"
+                        TextColor="#202125" />
                 </controls:ExtendedContentView>
             </StackLayout>
         </StackLayout>
 
         <StackLayout
-            Padding="20,0"
-            Spacing="20"
             Grid.Row="1"
-            Orientation="Horizontal">
+            Padding="20,0"
+            Orientation="Horizontal"
+            Spacing="20">
 
             <controls:ExtendedContentView
                 Padding="0,7"
-                HorizontalOptions="FillAndExpand"
-                CornerRadius="4"
+                BorderColor="#c1c1cc"
                 BorderThickness="3"
-                BorderColor="#c1c1cc">
+                CornerRadius="4"
+                HorizontalOptions="FillAndExpand">
                 <controls:ExtendedContentView.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding Path=BackCommand}"/>
+                    <TapGestureRecognizer Command="{Binding Path=BackCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
-                    TextColor="#347cff"
-                    Text="Back"/>
+                    Text="Back"
+                    TextColor="#347cff" />
             </controls:ExtendedContentView>
 
+            <!--  #347cff  -->
             <controls:ExtendedContentView
                 Padding="0,7"
-                HorizontalOptions="FillAndExpand"
+                BackgroundColor="LightCoral"
                 CornerRadius="4"
-                BackgroundColor="#347cff">
+                HorizontalOptions="FillAndExpand">
                 <controls:ExtendedContentView.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding Path=NextCommand}"/>
+                    <TapGestureRecognizer Command="{Binding Path=NextCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
-                    TextColor="White"
-                    Text="Next"/>
+                    Text="Next"
+                    TextColor="Red" />
             </controls:ExtendedContentView>
         </StackLayout>
     </Grid>

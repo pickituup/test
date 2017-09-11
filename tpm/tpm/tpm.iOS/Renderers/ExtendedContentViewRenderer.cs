@@ -34,8 +34,6 @@ namespace tpm.iOS.Renderers {
             if (Element.BorderColor != Color.Default) {
                 Layer.BorderColor = Element.BorderColor.ToCGColor();
                 Layer.BorderWidth = borderWidth;
-            } else {
-                Layer.BackgroundColor = UIColor.Clear.CGColor;
             }
 
             Layer.RasterizationScale = UIScreen.MainScreen.Scale;

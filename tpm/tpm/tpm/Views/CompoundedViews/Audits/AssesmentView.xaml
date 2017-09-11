@@ -1,72 +1,77 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="tpm.Views.CompoundedViews.AssesmentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:tpm.Views.Controls"
-    x:Class="tpm.Views.CompoundedViews.AssesmentView">
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime.InteropServices">
 
-    <Grid
-        Padding="20,20,20,40">
+    <Grid Padding="20,20,20,40">
         <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto"/>
-            <RowDefinition
-                Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Frame
             Grid.Row="0"
+            Padding="0,37"
             BackgroundColor="#f2f2f9"
-            HasShadow="False"
-            Padding="0,37">
+            HasShadow="False">
 
-            <StackLayout
-                Spacing="45">
+            <StackLayout Padding="13,0" Spacing="45">
 
                 <controls:ExtendedLabel
-                    TextColor="#676971"
                     HorizontalTextAlignment="Center"
                     LineHeight="1.5"
-                    Text="
-This app contains questions to evaluate the presence of combustive
-dust hazards at your workplace. It should take less than 10 minutes to complete.
-Thank you for your participation!"/>
+                    Text=" This app contains questions to evaluate the presence of combustive dust hazards at your workplace. It should take less than 10 minutes to complete. Thank you for your participation!"
+                    TextColor="#676971" />
 
                 <Frame
-                    HorizontalOptions="Center"
-                    BackgroundColor="#347cff"
                     Padding="35,7"
-                    HasShadow="False">
+                    BackgroundColor="#347cff"
+                    HasShadow="False"
+                    HorizontalOptions="Center">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding Path=StartAssesmentCommand}"/>
+                        <TapGestureRecognizer Command="{Binding Path=StartAssesmentCommand}" />
                     </Frame.GestureRecognizers>
                     <Label
-                        TextColor="White"
-                        FontSize="Large"
                         FontAttributes="Bold"
+                        FontSize="Large"
                         HorizontalTextAlignment="Center"
-                        Text="Start Assesment"/>
+                        Text="Start Assesment"
+                        TextColor="White" />
                 </Frame>
             </StackLayout>
         </Frame>
 
-        <controls:ExtendedContentView
-            Padding="50,7"
-            CornerRadius="4"
-            BorderThickness="3"
+        <!--
             BorderColor="#c1c1cc"
-            VerticalOptions="End"
+            BorderThickness="3"
+            CornerRadius="4"
+        -->
+
+        <controls:ExtendedContentView
+            Grid.Row="1"
+            Padding="50,7"
+            BorderColor="#c1c1cc"
+            CornerRadius="4"
             HorizontalOptions="Center"
-            Grid.Row="1">
+            VerticalOptions="End">
             <controls:ExtendedContentView.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding Path=MoreInfoCommand}"/>
+                <TapGestureRecognizer Command="{Binding Path=MoreInfoCommand}" />
             </controls:ExtendedContentView.GestureRecognizers>
+
+            <controls:ExtendedContentView.BorderThickness>
+                <OnPlatform
+                    x:TypeArguments="x:Int32"
+                    Android="3"
+                    iOS="1" />
+            </controls:ExtendedContentView.BorderThickness>
+
             <Label
+                FontSize="Large"
                 Text="More info"
-                TextColor="#347cff"
-                FontSize="Large"/>
+                TextColor="#347cff" />
         </controls:ExtendedContentView>
     </Grid>
 </ContentView>
