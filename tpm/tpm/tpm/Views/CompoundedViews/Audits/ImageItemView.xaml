@@ -1,33 +1,30 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<controls:StackListItemBase  
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<controls:StackListItemBase
+    x:Class="tpm.Views.CompoundedViews.ImageItemView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:tpm.Views.Controls"
-    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
-    x:Class="tpm.Views.CompoundedViews.ImageItemView">
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions">
 
     <AbsoluteLayout>
         <ContentView
             Padding="0,0,10,10"
-            AbsoluteLayout.LayoutFlags="All"
-            AbsoluteLayout.LayoutBounds="1,1,1,1">
-            
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All">
+
             <!--<BoxView
                 BackgroundColor="LightBlue"/>-->
-            <Image
-                Source="{Binding Path=ImageSource}"
-                Aspect="AspectFill"/>
+            <Image Source="{Binding Path=ImageSource}" />
         </ContentView>
 
         <Image
-            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_decline_fill_grey_bg.png}"
-            WidthRequest="20"
-            HeightRequest="20"
+            AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
             AbsoluteLayout.LayoutFlags="PositionProportional"
-            AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize">
+            HeightRequest="20"
+            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_decline_fill_grey_bg.png}"
+            WidthRequest="20">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding Path=DeleteImageCommand}"/>
+                <TapGestureRecognizer Command="{Binding Path=DeleteImageCommand}" />
             </Image.GestureRecognizers>
         </Image>
     </AbsoluteLayout>

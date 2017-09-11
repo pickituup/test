@@ -2,11 +2,14 @@
 using Foundation;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using tpm.DependencyServices;
+using tpm.iOS.Services;
 using UIKit;
 
+[assembly: Xamarin.Forms.Dependency(typeof(PickImageService))]
 namespace tpm.iOS.Services {
     public sealed class PickImageService : IPickImageService {
 
