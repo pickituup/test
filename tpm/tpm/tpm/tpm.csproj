@@ -87,9 +87,9 @@
     <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\Audit\AssesmentViewViewModel.cs" />
     <Compile Include="ViewModels\Audit\AuditPageViewModel.cs" />
-    <Compile Include="ViewModels\BasePageViewModel.cs" />
     <Compile Include="ViewModels\Audit\CommentViewModel.cs" />
     <Compile Include="ViewModels\Audit\EnterInfoViewViewModel.cs" />
+    <Compile Include="ViewModels\BasePageViewModel.cs" />
     <Compile Include="ViewModels\IListenerViewModel.cs" />
     <Compile Include="ViewModels\Audit\ImageViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />

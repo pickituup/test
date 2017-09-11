@@ -149,7 +149,9 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -158,6 +160,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\EntryRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
+    <Compile Include="Services\PickImageService.cs" />
     <Compile Include="Services\SqlLiteService.cs" />
   </ItemGroup>
   <ItemGroup>
