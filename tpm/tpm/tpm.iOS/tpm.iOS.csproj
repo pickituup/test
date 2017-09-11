@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\EntryRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Services\SqlLiteService.cs" />
   </ItemGroup>
