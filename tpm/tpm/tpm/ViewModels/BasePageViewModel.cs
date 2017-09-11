@@ -32,8 +32,11 @@ namespace tpm.ViewModels {
         public BasePageViewModel() {
             _menuContainer = new MenuContainer();
             MenuItems = _menuContainer.BuildMenuItems();
-            Menu = new MenuView() { IsVisible = false, Opacity = 0 };
-            Menu.TranslationX = _xTranslation;
+            Menu = new MenuView() {
+                IsVisible = false,
+                Opacity = 0,
+                TranslationX = _xTranslation
+            };
 
             ShowMenuCommand = new XF.Command(() => {
                 //
