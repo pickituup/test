@@ -12,16 +12,20 @@ namespace tpm.iOS.Services {
         /// 
         /// </summary>
         public void DefaultOrientation() {
-            AppDelegate.OrientationLock = UIInterfaceOrientationMask.Portrait;
-            UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.Portrait), new Foundation.NSString("orientation"));
+            if (UIApplication.SharedApplication.Delegate != null) {
+                AppDelegate.OrientationLock = UIInterfaceOrientationMask.Portrait;
+                UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.Portrait), new Foundation.NSString("orientation"));
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
         public void LandscapeFullScreen() {
-            AppDelegate.OrientationLock = UIInterfaceOrientationMask.Landscape;
-            UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.LandscapeLeft), new Foundation.NSString("orientation"));
+            if (UIApplication.SharedApplication.Delegate != null) {
+                AppDelegate.OrientationLock = UIInterfaceOrientationMask.Landscape;
+                UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.LandscapeLeft), new Foundation.NSString("orientation"));
+            }
         }
     }
 }

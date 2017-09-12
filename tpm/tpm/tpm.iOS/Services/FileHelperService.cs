@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using tpm.DependencyServices;
@@ -30,11 +31,11 @@ namespace tpm.iOS.Services {
         /// <summary>
         /// 
         /// </summary>
-        public string TpmExternalDictionaryPath => 
+        public string TpmDictionaryPath =>
             GetInternalTpmDirPath();
 
         /// <summary>
-        /// Get path to the TMP storaged Documents directory.
+        /// Get path to the TMP internal Documents directory.
         /// </summary>
         /// <returns></returns>
         public static string GetInternalTpmDirPath() {
@@ -59,7 +60,26 @@ namespace tpm.iOS.Services {
         /// <param name="src"></param>
         /// <returns></returns>
         public Task<bool> DownloadSourceAsync(string src) {
-            throw new NotImplementedException();
+            return Task<bool>.Run(() => {
+                try {
+                    HttpWebRequest request = new HttpWebRequest(new Uri(src));
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
+                        //
+                        // Clear all data from that file.
+                        //
+                        fileStream.SetLength(0);
+                        stream.CopyTo(fileStream);
+                    }
+
+                    return true;
+                }
+                catch (Exception e) {
+                    return false;
+                }
+            });
         }
 
         /// <summary>
