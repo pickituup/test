@@ -34,12 +34,24 @@
             FontSize="Large"
             HorizontalTextAlignment="Center"/>
 
-        <!--Company name input-->
+        <!--Email input-->
         <controls:ExtendedContentView
             CornerRadius="4"
             BorderThickness="3"
             BorderColor="#c1c1cc"
             Padding="9,0">
+            <controls:ExtendedContentView.Padding>
+                <OnPlatform
+                    x:TypeArguments="Thickness"
+                    Android="9,0"
+                    iOS="9,5" />
+            </controls:ExtendedContentView.Padding>
+            <controls:ExtendedContentView.BorderThickness>
+                <OnPlatform
+                    x:TypeArguments="x:Int32"
+                    Android="3"
+                    iOS="1" />
+            </controls:ExtendedContentView.BorderThickness>
             <Entry
                 TextColor="#202125"
                 Text="{Binding Path=EmailAddress,
@@ -47,14 +59,42 @@
                 Placeholder="E-mail"/>
         </controls:ExtendedContentView>
 
-        <StackLayout
-            Spacing="20"
-            Orientation="Horizontal">
+        <Grid
+            ColumnSpacing="21">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*"/>
+                <ColumnDefinition
+                    Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <Style
+                        TargetType="controls:ExtendedContentView">
+                        <Setter
+                            Property="Padding"
+                            Value="0,7"/>
+                        <Setter
+                            Property="CornerRadius"
+                            Value="4"/>
+                        <Setter
+                            Property="HorizontalOptions"
+                            Value="FillAndExpand"/>
+                    </Style>
+                    <Style
+                        TargetType="Label">
+                        <Setter
+                            Property="FontSize"
+                            Value="Large"/>
+                        <Setter
+                            Property="HorizontalTextAlignment"
+                            Value="Center"/>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
 
             <controls:ExtendedContentView
-                Padding="0,7"
-                HorizontalOptions="FillAndExpand"
-                CornerRadius="4"
+                Grid.Column="0"
                 BorderThickness="3"
                 BorderColor="#c1c1cc">
                 <controls:ExtendedContentView.GestureRecognizers>
@@ -62,27 +102,21 @@
                         Command="{Binding Path=HomeCommand}"/>
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
                     TextColor="#347cff"
                     Text="Home"/>
             </controls:ExtendedContentView>
 
             <controls:ExtendedContentView
-                Padding="0,7"
-                HorizontalOptions="FillAndExpand"
-                CornerRadius="4"
+                Grid.Column="1"
                 BackgroundColor="#347cff">
                 <controls:ExtendedContentView.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding Path=PublishCommand}"/>
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
                     TextColor="White"
                     Text="Submit"/>
             </controls:ExtendedContentView>
-        </StackLayout>
+        </Grid>
     </StackLayout>
 </ContentView>

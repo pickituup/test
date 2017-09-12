@@ -32,6 +32,9 @@ namespace tpm.iOS.Services {
             string docsPath = FileHelperService.GetInternalTpmDirPath();
             string fullFilePath = System.IO.Path.Combine(docsPath, FileHelperService.GENERATED_PDF_FILE_NAME);
 
+            //
+            // TODO: try to define some chooser, and add answer for user if device cant send messages.
+            //
             if (MFMailComposeViewController.CanSendMail) {
                 MFMailComposeViewController controller = new MFMailComposeViewController();
                 controller.SetToRecipients(new string[] { email });

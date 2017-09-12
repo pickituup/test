@@ -35,6 +35,11 @@ namespace tpm.NavigationFramework {
         /// <summary>
         /// Web view page
         /// </summary>
-        WebViewPage
+        WebViewPage,
+
+        /// <summary>
+        /// Pdf web view viewwe page
+        /// </summary>
+        PdfWebViewViewerPage
     }
 }

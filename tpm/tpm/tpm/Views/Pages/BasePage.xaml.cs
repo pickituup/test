@@ -43,7 +43,7 @@ namespace tpm.Views.Pages {
                 BindableProperty.Create("IsAwaiting",
                 typeof(bool),
                 typeof(BasePage),
-                defaultValue:false,
+                defaultValue: false,
                 propertyChanged: OnIsAwaitingChanged);
         }
 

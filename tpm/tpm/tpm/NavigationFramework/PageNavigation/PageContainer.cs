@@ -99,6 +99,10 @@ namespace tpm.NavigationFramework {
                 {
                     PageTypes.WebViewPage,
                     () => new PageBuider<WebViewPage>().GetPage()
+                },
+                {
+                    PageTypes.PdfWebViewViewerPage,
+                    () => new PageBuider<PdfWebViewViewerPage>().GetPage()
                 }
             };
         }

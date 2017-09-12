@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 
 namespace tpm.Views.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WebViewPage : BasePage, INavigatedPage, IWebViewPage {
+    public partial class WebViewPage : BasePage, INavigatedPage, IWebViewPage, IWebViewBugPage {
 
         private WebViewPageViewModel _viewModel;
 
@@ -42,6 +42,15 @@ namespace tpm.Views.Pages {
         public void ApplyVisualChangesWhileNavigating() { }
 
         /// <summary>
+        /// IWebViewPage implementation
+        /// Allow to fix web view bug with audio playback.
+        /// True - webView is hide, false - visible
+        /// <param name="isVisible"></param>
+        public void ExtendedWebViewImpact(bool isVisible) {
+            _webFrame_WebView.IsNotVisible = isVisible;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         protected override void OnAppearing() {
@@ -66,15 +75,6 @@ namespace tpm.Views.Pages {
             ExtendedWebViewImpact(true);
 
             return true;
-        }
-
-        /// <summary>
-        /// IWebViewPage implementation
-        /// Allow to fix web view bug with audio playback.
-        /// True - webView is hide, false - visible
-        /// <param name="isVisible"></param>
-        public void ExtendedWebViewImpact(bool isVisible) {
-            _webFrame_WebView.IsNotVisible = isVisible;
         }
     }
 }

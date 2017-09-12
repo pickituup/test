@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using tpm.DependencyServices;
+using tpm.Helpers;
 using tpm.Models.DataContainers.DataItems;
+using tpm.NavigationFramework;
 using Xamarin.Forms;
 
 namespace tpm.ViewModels {
@@ -23,27 +25,27 @@ namespace tpm.ViewModels {
             TrainingsToolItem = trainingsToolItem;
 
             GoThroughLinkCommand = new Command(async () => {
-                if (trainingsToolItem.DownloadSrc) {
-                    _canExecuteGoThroughLinkCommand = false;
-                    ((Command)GoThroughLinkCommand).ChangeCanExecute();
+                string fullPath =
+                    System.IO.Path.Combine(DependencyService.Get<IFileHelper>().TpmExternalDictionaryPath, DependencyService.Get<IFileHelper>().DownloadedPdfFileName);
 
-                    bool result = await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src);
+                if (DependencyService.Get<IFileHelper>().IsFileExists(fullPath)) {
+                    BaseSingleton<PageSwitchingLogic>.Instance
+                        .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
+                }
+                else {
+                    ToggleGoThroughLinkCommandExecution(false);
 
-                    if (result) {
-                        bool openFile = await DisplayAlert("Download", "Source is downloaded. Open src?", "Ok", "Cancel");
-                        if (openFile) {
-                            DependencyService.Get<IUseExternalComponentService>().IntentToDisplayRelativeFile(DependencyService.Get<IFileHelper>().DownloadedPdfFileName);
+                    if (await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src)) {
+                        if (await DisplayAlert("Complete", "Download complete. Open pdf?", "Ok", "Cancel")) {
+                            BaseSingleton<PageSwitchingLogic>.Instance
+                                .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
                         }
                     }
                     else {
-                        await DisplayAlert("Download", "Download faild");
+                        await DisplayAlert("Faild", "Download faild");
                     }
 
-                    _canExecuteGoThroughLinkCommand = true;
-                    ((Command)GoThroughLinkCommand).ChangeCanExecute();
-                }
-                else {
-                    DependencyService.Get<IUseExternalComponentService>().IntentToOpenWebSource(TrainingsToolItem.Src);
+                    ToggleGoThroughLinkCommandExecution(true);
                 }
             }, () => _canExecuteGoThroughLinkCommand);
         }
@@ -70,6 +72,14 @@ namespace tpm.ViewModels {
         public bool WebViewIsNotVisible {
             get => _webViewIsNotVisible;
             set => SetProperty<bool>(ref _webViewIsNotVisible, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ToggleGoThroughLinkCommandExecution(bool canExecute) {
+            _canExecuteGoThroughLinkCommand = canExecute;
+            ((Command)GoThroughLinkCommand).ChangeCanExecute();
         }
     }
 }

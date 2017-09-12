@@ -84,7 +84,7 @@
     <Compile Include="Validtion\IValidator.cs" />
     <Compile Include="Validtion\PublishValidation.cs" />
     <Compile Include="Validtion\Validators\EmailValidator.cs" />
-    <Compile Include="ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="ViewModels\About\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\Audit\AssesmentViewViewModel.cs" />
     <Compile Include="ViewModels\Audit\AuditPageViewModel.cs" />
     <Compile Include="ViewModels\Audit\CommentViewModel.cs" />
@@ -99,11 +99,12 @@
     <Compile Include="ViewModels\Audit\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Audit\ReviewViewViewModel.cs" />
     <Compile Include="ViewModels\Audit\PublishViewViewModel.cs" />
+    <Compile Include="ViewModels\PdfWebViewViewerPageViewModel.cs" />
     <Compile Include="ViewModels\TrainingToolsMaterials\TrainingToolsMaterialsBlockViewViewModel.cs" />
-    <Compile Include="ViewModels\TrainingPageViewModel.cs" />
+    <Compile Include="ViewModels\TrainingToolsMaterials\TrainingPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\Webinars\WebinarBlockViewViewModel.cs" />
-    <Compile Include="ViewModels\WebinarsPageViewModel.cs" />
+    <Compile Include="ViewModels\Webinars\WebinarsPageViewModel.cs" />
     <Compile Include="ViewModels\WebViewPageViewModel.cs" />
     <Compile Include="Views\CompoundedViews\ActionBars\ActionBarBase.cs" />
     <Compile Include="Views\CompoundedViews\ActionBars\CommonActionBar.xaml.cs">
@@ -159,6 +160,7 @@
       <DependentUpon>ExtendedSimpleIndicator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\ExtendedWebView.cs" />
+    <Compile Include="Views\Controls\PdfWebViewViewer.cs" />
     <Compile Include="Views\Controls\StackList.cs" />
     <Compile Include="Views\Controls\StackListItemBase.cs" />
     <Compile Include="Views\Pages\AboutPage.xaml.cs">
@@ -170,12 +172,13 @@
     <Compile Include="Views\Pages\BasePage.xaml.cs">
       <DependentUpon>BasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\Demo.xaml.cs">
-      <DependentUpon>Demo.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Views\Pages\IWebViewBugPage.cs" />
     <Compile Include="Views\Pages\IWebViewPage.cs" />
     <Compile Include="Views\Pages\MainStartupPage.xaml.cs">
       <DependentUpon>MainStartupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PdfWebViewViewerPage.xaml.cs">
+      <DependentUpon>PdfWebViewViewerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\TrainingPage.xaml.cs">
       <DependentUpon>TrainingPage.xaml</DependentUpon>
@@ -263,12 +266,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Pages\BasePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\CompoundedViews\Menu\MenuItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -288,12 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\CompoundedViews\Audits\ImageItemView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Pages\Demo.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -429,6 +420,18 @@
     <EmbeddedResource Include="Resourses\Img\ic_centralize.png" />
     <EmbeddedResource Include="Resourses\Img\ic_toolkit.png" />
     <EmbeddedResource Include="Resourses\Img\ic_download_fill_blue_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\BasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\PdfWebViewViewerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

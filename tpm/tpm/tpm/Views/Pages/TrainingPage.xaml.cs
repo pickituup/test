@@ -10,7 +10,7 @@ using tpm.ViewModels;
 
 namespace tpm.Views.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TrainingPage : BasePage, INavigatedPage, IWebViewPage {
+    public partial class TrainingPage : BasePage, INavigatedPage, IWebViewBugPage {
 
         private TrainingPageViewModel _viewModel;
 

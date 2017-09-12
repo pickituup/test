@@ -7,10 +7,17 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <!--  Style for ExtendedContentView which wraps entry  -->
-            <Style x:Key="entry_wraper_style" TargetType="controls:ExtendedContentView">
-                <Setter Property="BorderColor" Value="#c1c1cc" />
-                <Setter Property="CornerRadius" Value="4" />
-                <Setter Property="Padding">
+            <Style 
+                x:Key="entry_wraper_style" 
+               TargetType="controls:ExtendedContentView">
+                <Setter 
+                    Property="BorderColor" 
+                    Value="#c1c1cc" />
+                <Setter 
+                    Property="CornerRadius" 
+                    Value="4" />
+                <Setter 
+                    Property="Padding">
                     <Setter.Value>
                         <OnPlatform
                             x:TypeArguments="Thickness"
@@ -104,37 +111,57 @@
             Padding="20,0"
             Orientation="Horizontal"
             Spacing="20">
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style
+                        TargetType="controls:ExtendedContentView">
+                        <Setter
+                            Property="Padding"
+                            Value="0,7"/>
+                        <Setter
+                            Property="CornerRadius"
+                            Value="4"/>
+                        <Setter
+                            Property="HorizontalOptions"
+                            Value="FillAndExpand"/>
+                    </Style>
+                    <Style
+                        TargetType="Label">
+                        <Setter
+                            Property="FontSize"
+                            Value="Large"/>
+                        <Setter
+                            Property="HorizontalTextAlignment"
+                            Value="Center"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
 
             <controls:ExtendedContentView
-                Padding="0,7"
                 BorderColor="#c1c1cc"
-                BorderThickness="3"
-                CornerRadius="4"
-                HorizontalOptions="FillAndExpand">
+                BorderThickness="3">
                 <controls:ExtendedContentView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=BackCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
+                <controls:ExtendedContentView.BorderThickness>
+                    <OnPlatform
+                        x:TypeArguments="x:Int32"
+                        Android="3"
+                        iOS="1" />
+                </controls:ExtendedContentView.BorderThickness>
                 <Label
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
                     Text="Back"
                     TextColor="#347cff" />
             </controls:ExtendedContentView>
 
-            <!--  #347cff  -->
             <controls:ExtendedContentView
-                Padding="0,7"
-                BackgroundColor="LightCoral"
-                CornerRadius="4"
-                HorizontalOptions="FillAndExpand">
+                BackgroundColor="#347cff">
                 <controls:ExtendedContentView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=NextCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
                     Text="Next"
-                    TextColor="Red" />
+                    TextColor="White" />
             </controls:ExtendedContentView>
         </StackLayout>
     </Grid>

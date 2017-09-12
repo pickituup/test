@@ -6,6 +6,38 @@
     xmlns:controls="clr-namespace:tpm.Views.Controls"
     xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
     x:Class="tpm.Views.CompoundedViews.ReviewView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!--  Style for ExtendedContentView which wraps entry  -->
+            <Style 
+                x:Key="entry_wraper_style" 
+               TargetType="controls:ExtendedContentView">
+                <Setter 
+                    Property="BorderColor" 
+                    Value="#c1c1cc" />
+                <Setter 
+                    Property="CornerRadius" 
+                    Value="4" />
+                <Setter 
+                    Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform
+                            x:TypeArguments="Thickness"
+                            Android="9,0"
+                            iOS="9,5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness">
+                    <Setter.Value>
+                        <OnPlatform
+                            x:TypeArguments="x:Int32"
+                            Android="3"
+                            iOS="1" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <Grid
         RowSpacing="0"
@@ -74,7 +106,6 @@
                         Text="Publish"
                         TextColor="White"/>
                 </Frame>
-                
             </StackLayout>
         </StackLayout>
 
@@ -98,10 +129,7 @@
                     Padding="20,30">
 
                     <controls:ExtendedContentView
-                        CornerRadius="4"
-                        BorderThickness="3"
-                        BorderColor="#c1c1cc"
-                        Padding="9,0">
+                        Style="{StaticResource Key=entry_wraper_style}">
                         <Entry
                             TextColor="#202125"
                             Text="{Binding Path=User.UserName,
@@ -110,10 +138,7 @@
                     </controls:ExtendedContentView>
 
                     <controls:ExtendedContentView
-                        CornerRadius="4"
-                        BorderThickness="3"
-                        BorderColor="#c1c1cc"
-                        Padding="9,0">
+                        Style="{StaticResource Key=entry_wraper_style}">
                         <Entry
                             TextColor="#202125"
                             Text="{Binding Path=User.CompanyName,
@@ -122,10 +147,7 @@
                     </controls:ExtendedContentView>
 
                     <controls:ExtendedContentView
-                        CornerRadius="4"
-                        BorderThickness="3"
-                        BorderColor="#c1c1cc"
-                        Padding="9,0">
+                        Style="{StaticResource Key=entry_wraper_style}">
                         <Entry
                             TextColor="#202125"
                             Text="{Binding Path=User.CompanyAddress,
@@ -134,10 +156,7 @@
                     </controls:ExtendedContentView>
 
                     <controls:ExtendedContentView
-                        CornerRadius="4"
-                        BorderThickness="3"
-                        BorderColor="#c1c1cc"
-                        Padding="9,0">
+                        Style="{StaticResource Key=entry_wraper_style}">
                         <Entry
                             TextColor="#202125"
                             Text="{Binding Path=User.CompanyCityStateZip,
@@ -146,10 +165,7 @@
                     </controls:ExtendedContentView>
 
                     <controls:ExtendedContentView
-                        CornerRadius="4"
-                        BorderThickness="3"
-                        BorderColor="#c1c1cc"
-                        Padding="9,0">
+                        Style="{StaticResource Key=entry_wraper_style}">
                         <Entry
                             TextColor="#202125"
                             Text="{Binding Path=User.CompanySpecificLocation,

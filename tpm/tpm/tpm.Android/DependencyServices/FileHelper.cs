@@ -53,6 +53,35 @@ namespace tpm.Droid.DependencyServices {
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string TpmExternalDictionaryPath {
+            get {
+                return GetExternalTpmDirPath();
+            }
+        }
+
+        /// <summary>
+        /// Get path to the TMP storaged Documents directory.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetExternalTpmDirPath() {
+            string dirPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            string targetDir = System.IO.Path.Combine(dirPath, TPM_EXTERNAL_DICTIONARY_NAME);
+
+            bool isDirExist = Directory.Exists(targetDir);
+
+            if (isDirExist) {
+                return targetDir;
+            }
+            else {
+                Directory.CreateDirectory(targetDir);
+            }
+
+            return targetDir;
+        }
+
+        /// <summary>
         /// Returns FileStream for PDF
         /// </summary>
         /// <param name="fileName"></param>
@@ -104,23 +133,12 @@ namespace tpm.Droid.DependencyServices {
         }
 
         /// <summary>
-        /// Get path to the TMP storaged Documents directory.
+        /// 
         /// </summary>
+        /// <param name="filePath"></param>
         /// <returns></returns>
-        public static string GetExternalTpmDirPath() {
-            string dirPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
-            string targetDir = System.IO.Path.Combine(dirPath, TPM_EXTERNAL_DICTIONARY_NAME);
-
-            bool isDirExist = Directory.Exists(targetDir);
-
-            if (isDirExist) {
-                return targetDir;
-            }
-            else {
-                Directory.CreateDirectory(targetDir);
-            }
-
-            return targetDir;
+        public bool IsFileExists(string fullFilePath) {
+            return File.Exists(fullFilePath);
         }
 
         /// <summary>
@@ -165,58 +183,3 @@ namespace tpm.Droid.DependencyServices {
         }
     }
 }
-
-//
-//Old FileHelper methods
-//
-/*
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        public void Delete(string fileName) =>
-            File.Delete(getFilePath(fileName));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public bool Exists(string fileName) =>
-            File.Exists(getFilePath(fileName));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<string> GetFiles() =>
-            Directory.GetFiles(getDocsPath());
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public string ReadText(string fileName) =>
-            File.ReadAllText(getFilePath(fileName));
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="text"></param>
-        public void WriteText(string fileName, string text) =>
-            File.WriteAllText(getFilePath(fileName), text);
-        
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        private string GetFilePath(string fileName) {
-            string filePath = Path.Combine(getDocsPath(), fileName);
-
-            return filePath;
-        }
-        */

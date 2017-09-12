@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using tpm.Helpers;
 using tpm.Helpers.Observers.Audits;
+using tpm.NavigationFramework;
 
 namespace tpm.ViewModels {
     public class AssesmentViewViewModel : ViewModelBase {
@@ -19,8 +20,8 @@ namespace tpm.ViewModels {
                 BaseSingleton<AuditScopeObserver>.Instance.OnStartAssesment();
             });
 
-            MoreInfoCommand = new Command(async () => {
-                await DisplayAlert("More info", "More info logic");
+            MoreInfoCommand = new Command(() => {
+                BaseSingleton<PageSwitchingLogic>.Instance.NavigateTo(PageTypes.AboutPage);
             });
         }
 

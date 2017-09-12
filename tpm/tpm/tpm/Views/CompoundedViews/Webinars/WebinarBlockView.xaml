@@ -71,13 +71,13 @@
                 </ResourceDictionary>
             </StackLayout.Resources>
 
-            <!--Author-->
-            <StackLayout>
+            <!--Author. Must be removed-->
+            <!--<StackLayout>
                 <Image
                     Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_publisher_gray.png}"/>
                 <Label
                     Text="{Binding Path=Webinar.Author}"/>
-            </StackLayout>
+            </StackLayout>-->
 
             <!--Publish date-->
             <StackLayout>
@@ -85,7 +85,7 @@
                     Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_calendar_gray.png}"/>
                 <Label
                     Text="{Binding Path=Webinar.PublishDate,
-                        StringFormat='{0:dd MMM H:mm}'}"/>
+                        StringFormat='{0:dd MMM yyyy}'}"/>
             </StackLayout>
         </StackLayout>
 

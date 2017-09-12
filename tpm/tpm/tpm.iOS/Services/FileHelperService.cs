@@ -30,6 +30,32 @@ namespace tpm.iOS.Services {
         /// <summary>
         /// 
         /// </summary>
+        public string TpmExternalDictionaryPath => 
+            GetInternalTpmDirPath();
+
+        /// <summary>
+        /// Get path to the TMP storaged Documents directory.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetInternalTpmDirPath() {
+            string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string targetDir = System.IO.Path.Combine(dirPath, TPM_EXTERNAL_DICTIONARY_NAME);
+
+            bool isDirExist = Directory.Exists(targetDir);
+
+            if (isDirExist) {
+                return targetDir;
+            }
+            else {
+                Directory.CreateDirectory(targetDir);
+            }
+
+            return targetDir;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
         public Task<bool> DownloadSourceAsync(string src) {
@@ -54,23 +80,11 @@ namespace tpm.iOS.Services {
         }
 
         /// <summary>
-        /// Get path to the TMP storaged Documents directory.
+        /// 
         /// </summary>
+        /// <param name="fullFilePath"></param>
         /// <returns></returns>
-        public static string GetInternalTpmDirPath() {
-            string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string targetDir = System.IO.Path.Combine(dirPath, TPM_EXTERNAL_DICTIONARY_NAME);
-
-            bool isDirExist = Directory.Exists(targetDir);
-
-            if (isDirExist) {
-                return targetDir;
-            }
-            else {
-                Directory.CreateDirectory(targetDir);
-            }
-
-            return targetDir;
-        }
+        public bool IsFileExists(string fullFilePath) =>
+            File.Exists(fullFilePath);
     }
 }

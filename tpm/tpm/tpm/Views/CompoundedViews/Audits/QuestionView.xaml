@@ -1,303 +1,381 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
-    x:Class="tpm.Views.CompoundedViews.QuestionView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:tpm.Views.Controls"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:tpm.Views.CompoundedViews"
     xmlns:toolkitConverters="clr-namespace:tpm.ToolKit.ValueConverters"
-    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions">
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    x:Class="tpm.Views.CompoundedViews.QuestionView">
     <ContentView.Resources>
         <ResourceDictionary>
-
-            <toolkitConverters:BoolToGenericObjectConverter
+            
+            <toolkitConverters:BoolToGenericObjectConverter 
                 x:Key="bool_to_imageSource_comments_converter"
                 x:TypeArguments="ImageSource"
-                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_not_selected.png}"
-                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_selected.png}" />
-
-            <toolkitConverters:BoolToGenericObjectConverter
+                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_selected.png}"
+                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_not_selected.png}"/>
+            
+            <toolkitConverters:BoolToGenericObjectConverter 
                 x:Key="bool_to_imageSource_images_converter"
                 x:TypeArguments="ImageSource"
-                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_not_selected.png}"
-                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_selected.png}" />
+                TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_selected.png}"
+                FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_photo_not_selected.png}"/>
 
-            <toolkitConverters:BoolToGenericObjectConverter
+            <toolkitConverters:BoolToGenericObjectConverter 
                 x:Key="bool_to_color_image_comment_selection_converter"
                 x:TypeArguments="Color"
-                FalseObject="#c1c1cc"
-                TrueObject="#202125" />
+                TrueObject="#202125"
+                FalseObject="#c1c1cc"/>
 
-            <Style x:Key="comments_images_tooglers" TargetType="Image">
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="Aspect" Value="AspectFill" />
-                <Setter Property="WidthRequest" Value="16" />
-                <Setter Property="HeightRequest" Value="13" />
+            <Style
+                TargetType="Image"
+                x:Key="comments_images_tooglers">
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center"/>
+                <Setter
+                    Property="Aspect"
+                    Value="AspectFill"/>
+                <Setter
+                    Property="WidthRequest"
+                    Value="16"/>
+                <Setter
+                    Property="HeightRequest"
+                    Value="13"/>
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-
-    <Grid ColumnSpacing="0" RowSpacing="0">
+    
+    <Grid
+        ColumnSpacing="0"
+        RowSpacing="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="52" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition
+                Width="52"/>
+            <ColumnDefinition
+                Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition
+                Height="25"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!--  Question index  -->
+<!--Question index-->
         <Label
             Grid.Row="1"
-            Margin="0,0,19,0"
+            TextColor="#d9d9e4"
+            Text="{Binding Path=Question.Index,
+                StringFormat='{0}.'}"
             HorizontalTextAlignment="End"
-            Text="{Binding Path=Question.Index, StringFormat='{0}.'}"
-            TextColor="#d9d9e4" />
+            Margin="0,0,19,0"/>
 
 
-        <!--  Question text spot  -->
+<!--Question text spot-->
         <ContentView
             Grid.Row="1"
             Grid.Column="1"
             Padding="0,0,60,0">
-            <Label Text="{Binding Path=Question.QuestionMessage}" TextColor="#202125" />
+            <Label
+                TextColor="#202125"
+                Text="{Binding Path=Question.QuestionMessage}"/>
         </ContentView>
 
-        <!--  Question controls spot  -->
+<!--Question controls spot-->
         <Grid
-            Grid.Row="2"
-            Grid.Column="1"
+            RowSpacing="0"
             ColumnSpacing="0"
-            RowSpacing="0">
+            Grid.Column="1"
+            Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition 
+                    Height="Auto"/>
+                <RowDefinition 
+                    Height="Auto"/>
             </Grid.RowDefinitions>
 
             <StackLayout
                 Padding="0,13,17,13"
-                Orientation="Horizontal"
-                Spacing="0">
+                Spacing="0"
+                Orientation="Horizontal">
 
-                <!--  Comments clickable section  -->
-                <ContentView HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                    <StackLayout Orientation="Horizontal" Spacing="0">
+                <!--Comments clickable section-->
+                <ContentView
+                    VerticalOptions="Center"
+                    HorizontalOptions="StartAndExpand">
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=ToggleCommentsVisibilityCommand}" />
+                            <TapGestureRecognizer
+                                Command="{Binding Path=ToggleCommentsVisibilityCommand}"/>
                         </StackLayout.GestureRecognizers>
-
-                        <Image Source="{Binding Path=IsVisibleCommentsSection, Converter={StaticResource Key=bool_to_imageSource_comments_converter}}" Style="{StaticResource Key=comments_images_tooglers}" />
-
-                        <Label
-                            Margin="3,0,0,0"
-                            Text="{Binding Path=CommentsCount, StringFormat='{0} comments'}"
-                            TextColor="{Binding Path=IsVisibleCommentsSection, Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}" />
-                    </StackLayout>
-                </ContentView>
-
-                <!--  Images clickable section  -->
-                <ContentView HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=ToggleImagesVisibilityCommand}" />
-                        </StackLayout.GestureRecognizers>
-
-                        <Image Source="{Binding Path=IsVisibleImagesSection, Converter={StaticResource Key=bool_to_imageSource_images_converter}}" Style="{StaticResource Key=comments_images_tooglers}" />
-
-                        <Label
-                            Margin="3,0,0,0"
-                            Text="{Binding Path=ImagesCount, StringFormat='{0} images'}"
-                            TextColor="{Binding Path=IsVisibleImagesSection, Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}" />
-                    </StackLayout>
-                </ContentView>
-
-                <!--  Yse/No section  -->
-                <ContentView HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                    <StackLayout Orientation="Horizontal" Spacing="6">
 
                         <Image
-                            Aspect="AspectFill"
-                            HeightRequest="40"
+                            Style="{StaticResource Key=comments_images_tooglers}"
+                            Source="{Binding Path=IsVisibleCommentsSection,
+                                Converter={StaticResource Key=bool_to_imageSource_comments_converter}}"/>
+
+                        <Label
+                            Margin="3,0,0,0"
+                            Text="{Binding Path=CommentsCount,
+                                StringFormat='{0} comments'}"
+                            TextColor="{Binding Path=IsVisibleCommentsSection,
+                                Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}"/>
+                    </StackLayout>
+                </ContentView>
+
+                <!--Images clickable section-->
+                <ContentView
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand">
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Path=ToggleImagesVisibilityCommand}"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Image
+                            Style="{StaticResource Key=comments_images_tooglers}"
+                            Source="{Binding Path=IsVisibleImagesSection,
+                                Converter={StaticResource Key=bool_to_imageSource_images_converter}}"/>
+
+                        <Label
+                            Margin="3,0,0,0"
+                            Text="{Binding Path=ImagesCount,
+                                StringFormat='{0} images'}"
+                            TextColor="{Binding Path=IsVisibleImagesSection,
+                                Converter={StaticResource Key=bool_to_color_image_comment_selection_converter}}"/>
+                    </StackLayout>
+                </ContentView>
+
+                <!--Yse/No section-->
+                <ContentView
+                    VerticalOptions="Center"
+                    HorizontalOptions="EndAndExpand">
+                    <StackLayout
+                        Spacing="6"
+                        Orientation="Horizontal">
+
+                        <Image
                             Source="{Binding Path=YesButtonImage}"
                             VerticalOptions="Center"
-                            WidthRequest="40">
+                            Aspect="AspectFill"
+                            WidthRequest="40"
+                            HeightRequest="40">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=YesAnswerCommand}" />
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=YesAnswerCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
 
                         <Image
-                            Aspect="AspectFill"
-                            HeightRequest="40"
                             Source="{Binding Path=NoButtonImage}"
                             VerticalOptions="Center"
-                            WidthRequest="40">
+                            Aspect="AspectFill"
+                            WidthRequest="40"
+                            HeightRequest="40">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=NoAnswerCommand}" />
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=NoAnswerCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </StackLayout>
                 </ContentView>
             </StackLayout>
 
-            <!--  Underline under controls spot  -->
+            <!--Underline under controls spot-->
             <BoxView
                 Grid.Row="1"
+                Color="#ebebf2"
                 HeightRequest="1"
-                HorizontalOptions="FillAndExpand"
-                Color="#ebebf2" />
+                HorizontalOptions="FillAndExpand"/>
         </Grid>
 
-        <!--  If no answer spot  -->
+        <!--If no answer spot-->
         <Frame
-            Grid.RowSpan="3"
-            Grid.ColumnSpan="2"
-            Margin="5"
-            Padding="45,9,0,0"
             BackgroundColor="#f65454"
+            IsVisible="{Binding Path=IsVisibleIfNoSection}"
+            Padding="45,9,0,0"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
             HasShadow="False"
-            IsVisible="{Binding Path=IsVisibleIfNoSection}">
+            Margin="5">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition
+                        Width="*"/>
+                    <ColumnDefinition
+                        Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Path=Question.IfNoAnswer}" TextColor="White" />
+                <Label
+                    TextColor="White"
+                    Text="{Binding Path=Question.IfNoAnswer}"/>
 
                 <Image
-                    Grid.Column="1"
                     Margin="0,0,13,9"
-                    Aspect="Fill"
-                    HeightRequest="40"
-                    Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_decline_white_no_border.png}"
+                    Grid.Column="1"
+                    Source="{toolkitExtensions:ImageResourceExtension 
+                        Source=tpm.Resourses.Img.ic_decline_white_no_border.png}"
                     VerticalOptions="EndAndExpand"
-                    WidthRequest="40">
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Aspect="Fill">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=CloseIfNoSectionCommand}" />
+                        <TapGestureRecognizer
+                            Command="{Binding Path=CloseIfNoSectionCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>
         </Frame>
 
-        <!--  Attachments section  -->
+<!--Attachments section-->
         <ContentView
-            Grid.Row="3"
             Grid.Column="1"
+            Grid.Row="3"
             BackgroundColor="Transparent">
 
-            <!--  Shared spot for images/comments  -->
-            <Grid ColumnSpacing="0" RowSpacing="0">
+<!--Shared spot for images/comments-->
+            <Grid
+                ColumnSpacing="0"
+                RowSpacing="0">
 
-                <!--  Comment attachment spot  -->
-                <ContentView IsVisible="{Binding Path=IsVisibleCommentsSection, Mode=TwoWay}">
+<!--Comment attachment spot-->
+                <ContentView
+                    IsVisible="{Binding Path=IsVisibleCommentsSection,
+                        Mode=TwoWay}">
                     <Grid
                         Padding="0,15,17,0"
                         ColumnSpacing="0"
                         RowSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition
+                                Width="*"/>
+                            <ColumnDefinition
+                                Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition
+                                Height="Auto"/>
+                            <RowDefinition
+                                Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!--  Comments stack  -->
+<!--Comments stack-->
                         <controls:StackList
                             Grid.ColumnSpan="2"
                             IsGrouped="False"
                             ItemsSource="{Binding Path=InteractiveComments}">
                             <controls:StackList.ItemTemplate>
                                 <DataTemplate>
-                                    <local:CommentItemView Padding="0,0,0,9" />
+                                    <local:CommentItemView
+                                        Padding="0,0,0,9"/>
                                 </DataTemplate>
                             </controls:StackList.ItemTemplate>
                         </controls:StackList>
 
-                        <!--  Display comment entry button  -->
+<!--Display comment entry button-->
                         <Image
-                            Grid.Row="1"
-                            Grid.Column="1"
                             Margin="0,0,2,0"
-                            HeightRequest="40"
+                            Source="{toolkitExtensions:ImageResourceExtension 
+                                Source=tpm.Resourses.Img.ic_comment_round_border.png}"
+                            Grid.Column="1"
+                            Grid.Row="1"
                             HorizontalOptions="End"
-                            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_round_border.png}"
-                            WidthRequest="40">
+                            WidthRequest="40"
+                            HeightRequest="40">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=DisplayComentEntryCommand}" />
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=DisplayComentEntryCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
 
-                        <!--  Comment entry spot  -->
+<!--Comment entry spot-->
                         <StackLayout
+                            BackgroundColor="#f5f5f8"
+                            IsVisible="{Binding Path=IsVisibleComentEnrySection}"
+                            Spacing="0"
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
-                            BackgroundColor="#f5f5f8"
-                            HorizontalOptions="FillAndExpand"
-                            IsVisible="{Binding Path=IsVisibleComentEnrySection}"
                             Orientation="Vertical"
-                            Spacing="0">
-
-                            <Editor HeightRequest="200" Text="{Binding Path=TypedCommentsMessage, Mode=TwoWay}" />
-
+                            HorizontalOptions="FillAndExpand">
+                            
+                            <Editor
+                                Text="{Binding Path=TypedCommentsMessage,   
+                                    Mode=TwoWay}"
+                                HeightRequest="200"/>
+                            
                             <StackLayout
-                                Orientation="Horizontal"
                                 Spacing="0"
-                                VerticalOptions="End">
+                                VerticalOptions="End"
+                                Orientation="Horizontal">
 
                                 <Button
                                     Command="{Binding Path=AddCommentCommand}"
                                     HorizontalOptions="FillAndExpand"
-                                    Text="Send" />
+                                    Text="Send"/>
                                 <Button
                                     Command="{Binding Path=DeclineComentTypingCommand}"
                                     HorizontalOptions="FillAndExpand"
-                                    Text="Decline" />
+                                    Text="Decline"/>
                             </StackLayout>
                         </StackLayout>
                     </Grid>
                 </ContentView>
 
-                <!--  Image attachment spot  -->
-                <ContentView Padding="0,20,0,0" IsVisible="{Binding Path=IsVisibleImagesSection, Mode=TwoWay}">
-                    <Grid ColumnSpacing="0" RowSpacing="0">
+<!--Image attachment spot-->
+                <ContentView
+                    Padding="0,20,0,0"
+                    IsVisible="{Binding Path=IsVisibleImagesSection,
+                        Mode=TwoWay}">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition
+                                Width="*"/>
+                            <ColumnDefinition
+                                Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!--  Images stack  -->
+<!--Images stack-->
                         <controls:StackList
+                            VerticalOptions="End"
                             HorizontalOptions="Start"
                             IsGrouped="False"
-                            ItemsSource="{Binding Path=InteractiveImages}"
-                            VerticalOptions="End">
+                            ItemsSource="{Binding Path=InteractiveImages}">
                             <controls:StackList.ItemTemplate>
                                 <DataTemplate>
                                     <local:ImageItemView
+                                        WidthRequest="150"
                                         HeightRequest="150"
-                                        HorizontalOptions="Start"
-                                        WidthRequest="150" />
+                                        HorizontalOptions="Start"/>
                                 </DataTemplate>
                             </controls:StackList.ItemTemplate>
                         </controls:StackList>
 
-                        <!--  Add image button  -->
+<!--Add image button-->
                         <Image
-                            Grid.Column="1"
                             Margin="0,3,18,0"
-                            HeightRequest="40"
-                            HorizontalOptions="End"
-                            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_plus_rounded_border.png}"
+                            Source="{toolkitExtensions:ImageResourceExtension 
+                                Source=tpm.Resourses.Img.ic_plus_rounded_border.png}"
+                            Grid.Column="1"
                             VerticalOptions="End"
-                            WidthRequest="40">
+                            HorizontalOptions="End"
+                            WidthRequest="40"
+                            HeightRequest="40">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=AddImageCommand}" />
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=AddImageCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </Grid>

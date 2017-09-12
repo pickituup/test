@@ -17,7 +17,7 @@ namespace tpm.Views.CompoundedViews {
         /// </summary>
         public EnterInfoView() {
             InitializeComponent();
-            
+
             BindingContext = _viewModel = new EnterInfoViewViewModel();
         }
     }

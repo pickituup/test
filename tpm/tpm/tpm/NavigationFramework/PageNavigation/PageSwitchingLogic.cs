@@ -65,7 +65,7 @@ namespace tpm.NavigationFramework {
 
                 if (relativePageFromNavigationStack != null) {
                     Device.BeginInvokeOnMainThread(() => {
-                        MoveToTheExistingPageInNavigationStack(relativePageFromNavigationStack); 
+                        MoveToTheExistingPageInNavigationStack(relativePageFromNavigationStack);
                     });
                 }
                 else {
@@ -98,13 +98,14 @@ namespace tpm.NavigationFramework {
         /// 
         /// </summary>
         /// <param name="uri"></param>
-        public void DisplayWebViewPage(string uri) {
+        public void DisplayWebViewPage(string uri, PageTypes webViewPageType) {
             //
             // TODO: before inserting the page check if is not also exist in page stack.
             //
-            WebViewPage webViewPage = (WebViewPage)GetPageByType(PageTypes.WebViewPage);
+            IWebViewPage webViewPage = (IWebViewPage)GetPageByType(webViewPageType);
             webViewPage.SrcPath = uri;
-            PushPage(webViewPage);
+
+            PushPage((Page)webViewPage);
         }
 
         /// <summary>
@@ -164,17 +165,5 @@ namespace tpm.NavigationFramework {
                     _ERROR_INVALID_PAGE_IN_NAVIGATION_STACK, exc.Message));
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        //private void ComposeActionBarAndPage(BasePage targetPage, ActionBarBase targetActionBar) {
-        //    if (targetPage.ActionBar != null &&
-        //        targetPage.ActionBar.GetType() == targetActionBar.GetType()) {
-        //        return;
-        //    }
-
-        //    targetPage.ActionBar = targetActionBar;
-        //}
     }
 }

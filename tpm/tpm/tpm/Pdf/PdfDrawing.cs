@@ -40,7 +40,7 @@ namespace tpm.Pdf {
             return Task.Run(() => {
                 _document = new PdfFixedDocument();
 
-                StartDrawing(user);
+                TEST_GEN_PDF(user);
 
                 _document = null;
             });
@@ -50,7 +50,7 @@ namespace tpm.Pdf {
         /// 
         /// </summary>
         /// <param name="user"></param>
-        private void StartDrawing(User user) {
+        private void TEST_GEN_PDF(User user) {
             CreateNewPdfPage();
 
             Draw(user);

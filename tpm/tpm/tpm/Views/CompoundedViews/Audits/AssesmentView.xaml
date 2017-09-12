@@ -44,12 +44,6 @@
             </StackLayout>
         </Frame>
 
-        <!--
-            BorderColor="#c1c1cc"
-            BorderThickness="3"
-            CornerRadius="4"
-        -->
-
         <controls:ExtendedContentView
             Grid.Row="1"
             Padding="50,7"
@@ -58,7 +52,8 @@
             HorizontalOptions="Center"
             VerticalOptions="End">
             <controls:ExtendedContentView.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Path=MoreInfoCommand}" />
+                <TapGestureRecognizer 
+                    Command="{Binding Path=MoreInfoCommand}" />
             </controls:ExtendedContentView.GestureRecognizers>
 
             <controls:ExtendedContentView.BorderThickness>

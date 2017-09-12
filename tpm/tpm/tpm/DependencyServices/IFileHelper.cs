@@ -53,6 +53,11 @@ namespace tpm.DependencyServices {
         string DownloadedPdfFileName { get; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        string TpmExternalDictionaryPath { get; }
+
+        /// <summary>
         /// Returns FileStream for PDF
         /// </summary>
         /// <param name="fileName"></param>
@@ -62,13 +67,14 @@ namespace tpm.DependencyServices {
         /// 
         /// </summary>
         /// <param name="src"></param>
-        //void DownloadSource(string src);
+        /// <returns></returns>
+        Task<bool> DownloadSourceAsync(string src);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="fullFilePath"></param>
         /// <returns></returns>
-        Task<bool> DownloadSourceAsync(string src);
+        bool IsFileExists(string fullFilePath);
     }
 }

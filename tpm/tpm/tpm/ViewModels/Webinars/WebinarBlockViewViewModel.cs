@@ -23,7 +23,7 @@ namespace tpm.ViewModels {
             Webinar = webinar;
 
             PlayVideoCommand = new Command(() => {
-                BaseSingleton<PageSwitchingLogic>.Instance.DisplayWebViewPage(Webinar.SourcePath);
+                BaseSingleton<PageSwitchingLogic>.Instance.DisplayWebViewPage(Webinar.SourcePath, PageTypes.WebViewPage);
                 DependencyService.Get<IScreenService>().LandscapeFullScreen();
             });
         }

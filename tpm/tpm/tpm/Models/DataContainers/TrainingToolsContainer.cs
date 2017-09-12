@@ -11,12 +11,8 @@ using Xamarin.Forms;
 namespace tpm.Models.DataContainers {
     public sealed class TrainingToolsContainer {
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<TrainingToolsItem> BuildWebinarItems() {
-            return new List<TrainingToolsItem>() {
+        /*
+         return new List<TrainingToolsItem>() {
                 new TrainingToolsItem() {
                     Index = 1,
                     Header = "Youtube video",
@@ -60,6 +56,30 @@ namespace tpm.Models.DataContainers {
                         return stream; }),
                     FirstItemTitle = "www.link.com/safetycommeittemeetinghangout",
                     Src="https://www.xamarin.com/"
+                }
+        */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<TrainingToolsItem> BuildWebinarItems() {
+            return new List<TrainingToolsItem>() {
+                new TrainingToolsItem() {
+                    Index = 1,
+                    Header = "Keeping worksurfaces clean and dry",
+                    TextContent = "Walk and Work surfaces safety training",
+                    FirstItemIcon = ImageSource.FromStream(()=> {
+                        Assembly assembly = GetType().GetTypeInfo().Assembly;
+                        Stream stream = assembly.GetManifestResourceStream("tpm.Resourses.Img.ic_pdf.png");
+                        return stream; }),
+                    FirstItemTitle = "File name",
+                    SeondItemIcon = ImageSource.FromStream(()=> {
+                        Assembly assembly = GetType().GetTypeInfo().Assembly;
+                        Stream stream = assembly.GetManifestResourceStream("tpm.Resourses.Img.ic_download_fill_blue_bg.png");
+                        return stream; }),
+                    SecondItemTitle="3mb",
+                    DownloadSrc = true,
+                    Src = "https://drive.google.com/uc?authuser=0&id=0B62wyfOLiDX8NVNQemdHR1JBRDg&export=download"
                 }
             };
         }

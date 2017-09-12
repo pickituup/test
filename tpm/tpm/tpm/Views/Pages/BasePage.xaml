@@ -5,9 +5,11 @@
     xmlns:controls="clr-namespace:tpm.Views.Controls"
     x:Class="tpm.Views.Pages.BasePage"
     BackgroundColor="White">
-    
+
     <Grid
-        x:Name="_rootGrid_Grid">
+        x:Name="_rootGrid_Grid"
+        RowSpacing="0"
+        ColumnSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="*"/>
@@ -24,24 +26,24 @@
                     Height="*"/>
             </Grid.RowDefinitions>
 
-<!--Action bar spot-->
+            <!--Action bar spot-->
             <ContentView
                 x:Name="_actionBarSpot_ContentView"/>
-            
-<!--Main content spot-->
+
+            <!--Main content spot-->
             <ContentView
                 Grid.Row="1"
                 x:Name="_mainContentSpot_ContentView"/>
         </Grid>
 
-<!--Menu spot-->
+        <!--Menu spot-->
         <ContentView
             x:Name="_menuSpot_ContentView"
             Grid.Row="1"
             VerticalOptions="Fill"
             HorizontalOptions="Fill"/>
 
-<!--Busy indicator-->
+        <!--Busy indicator-->
         <controls:ExtendedSimpleIndicator
             x:Name="_indicator_ExtendedSimpleIndicator"
             Grid.Row="1"/>
