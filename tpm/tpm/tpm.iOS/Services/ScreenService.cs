@@ -19,6 +19,7 @@ namespace tpm.iOS.Services {
         /// 
         /// </summary>
         public void LandscapeFullScreen() {
+            AppDelegate.OrientationLock = UIInterfaceOrientationMask.Landscape;
             UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.LandscapeLeft), new Foundation.NSString("orientation"));
         }
     }
