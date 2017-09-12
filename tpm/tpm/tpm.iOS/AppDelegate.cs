@@ -7,7 +7,7 @@ namespace tpm.iOS {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate {
 
-        public UIInterfaceOrientationMask OrientationLock = UIInterfaceOrientationMask.All;
+        public static UIInterfaceOrientationMask OrientationLock = UIInterfaceOrientationMask.Portrait;
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using tpm.DependencyServices;
 using tpm.Helpers;
 using tpm.NavigationFramework;
@@ -14,14 +15,24 @@ namespace tpm.ViewModels {
         /// <summary>
         /// Public ctor.
         /// </summary>
-        public WebViewPageViewModel() { }
+        public WebViewPageViewModel() {
+            ClosePageCommand = new Command(() => OneStepBackViewNavigation());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand ClosePageCommand {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Provide back step navigation for WebViewPage
         /// </summary>
         public void OneStepBackViewNavigation() {
-            BaseSingleton<PageSwitchingLogic>.Instance.NavigateOneStepBack();
             DependencyService.Get<IScreenService>().DefaultOrientation();
+            BaseSingleton<PageSwitchingLogic>.Instance.NavigateOneStepBack();
         }
     }
 }
