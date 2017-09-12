@@ -9,13 +9,13 @@
     x:Class="tpm.Views.CompoundedViews.QuestionView">
     <ContentView.Resources>
         <ResourceDictionary>
-            
+
             <toolkitConverters:BoolToGenericObjectConverter 
                 x:Key="bool_to_imageSource_comments_converter"
                 x:TypeArguments="ImageSource"
                 TrueObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_selected.png}"
                 FalseObject="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_comment_not_selected.png}"/>
-            
+
             <toolkitConverters:BoolToGenericObjectConverter 
                 x:Key="bool_to_imageSource_images_converter"
                 x:TypeArguments="ImageSource"
@@ -46,7 +46,7 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    
+
     <Grid
         ColumnSpacing="0"
         RowSpacing="0">
@@ -67,7 +67,7 @@
                 Height="Auto"/>
         </Grid.RowDefinitions>
 
-<!--Question index-->
+        <!--Question index-->
         <Label
             Grid.Row="1"
             TextColor="#d9d9e4"
@@ -77,7 +77,7 @@
             Margin="0,0,19,0"/>
 
 
-<!--Question text spot-->
+        <!--Question text spot-->
         <ContentView
             Grid.Row="1"
             Grid.Column="1"
@@ -87,7 +87,7 @@
                 Text="{Binding Path=Question.QuestionMessage}"/>
         </ContentView>
 
-<!--Question controls spot-->
+        <!--Question controls spot-->
         <Grid
             RowSpacing="0"
             ColumnSpacing="0"
@@ -238,18 +238,18 @@
             </Grid>
         </Frame>
 
-<!--Attachments section-->
+        <!--Attachments section-->
         <ContentView
             Grid.Column="1"
             Grid.Row="3"
             BackgroundColor="Transparent">
 
-<!--Shared spot for images/comments-->
+            <!--Shared spot for images/comments-->
             <Grid
                 ColumnSpacing="0"
                 RowSpacing="0">
 
-<!--Comment attachment spot-->
+                <!--Comment attachment spot-->
                 <ContentView
                     IsVisible="{Binding Path=IsVisibleCommentsSection,
                         Mode=TwoWay}">
@@ -270,7 +270,7 @@
                                 Height="Auto"/>
                         </Grid.RowDefinitions>
 
-<!--Comments stack-->
+                        <!--Comments stack-->
                         <controls:StackList
                             Grid.ColumnSpan="2"
                             IsGrouped="False"
@@ -283,7 +283,7 @@
                             </controls:StackList.ItemTemplate>
                         </controls:StackList>
 
-<!--Display comment entry button-->
+                        <!--Display comment entry button-->
                         <Image
                             Margin="0,0,2,0"
                             Source="{toolkitExtensions:ImageResourceExtension 
@@ -299,22 +299,34 @@
                             </Image.GestureRecognizers>
                         </Image>
 
-<!--Comment entry spot-->
+                        <!--Comment entry spot-->
                         <StackLayout
-                            BackgroundColor="#f5f5f8"
+                            BackgroundColor="White"
                             IsVisible="{Binding Path=IsVisibleComentEnrySection}"
-                            Spacing="0"
+                            Spacing="5"
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
                             Orientation="Vertical"
                             HorizontalOptions="FillAndExpand">
-                            
-                            <Editor
-                                Text="{Binding Path=TypedCommentsMessage,   
-                                    Mode=TwoWay}"
-                                HeightRequest="200"/>
-                            
-                            <StackLayout
+
+                            <controls:ExtendedContentView
+                                CornerRadius="4"
+                                BorderColor="#c1c1cc"
+                                Padding="5,0">
+                                <controls:ExtendedContentView.BorderThickness>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Int32"
+                                        Android="3"
+                                        iOS="1" />
+                                </controls:ExtendedContentView.BorderThickness>
+                                <Editor
+                                    BackgroundColor="Transparent"
+                                    Text="{Binding Path=TypedCommentsMessage,   
+                                        Mode=TwoWay}"
+                                    HeightRequest="200"/>
+                            </controls:ExtendedContentView>
+
+                            <!--<StackLayout
                                 Spacing="0"
                                 VerticalOptions="End"
                                 Orientation="Horizontal">
@@ -323,16 +335,81 @@
                                     Command="{Binding Path=AddCommentCommand}"
                                     HorizontalOptions="FillAndExpand"
                                     Text="Send"/>
+                                
                                 <Button
                                     Command="{Binding Path=DeclineComentTypingCommand}"
                                     HorizontalOptions="FillAndExpand"
                                     Text="Decline"/>
-                            </StackLayout>
+                            </StackLayout>-->
+                            <Grid
+                                ColumnSpacing="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="*"/>
+                                    <ColumnDefinition
+                                        Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Resources>
+                                    <ResourceDictionary>
+                                        <Style
+                                            TargetType="controls:ExtendedContentView">
+                                            <Setter
+                                                Property="Padding"
+                                                Value="0,7"/>
+                                            <Setter
+                                                Property="CornerRadius"
+                                                Value="4"/>
+                                            <Setter
+                                                Property="HorizontalOptions"
+                                                Value="FillAndExpand"/>
+                                        </Style>
+                                        <Style
+                                            TargetType="Label">
+                                            <Setter
+                                                Property="FontSize"
+                                                Value="Large"/>
+                                            <Setter
+                                                Property="HorizontalTextAlignment"
+                                                Value="Center"/>
+                                        </Style>
+                                    </ResourceDictionary>
+                                </Grid.Resources>
+
+                                <controls:ExtendedContentView
+                                    Grid.Column="0"
+                                    BackgroundColor="#347cff">
+                                    <controls:ExtendedContentView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=AddCommentCommand}"/>
+                                    </controls:ExtendedContentView.GestureRecognizers>
+                                    <controls:ExtendedContentView.BorderThickness>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Int32"
+                                            Android="3"
+                                            iOS="1" />
+                                    </controls:ExtendedContentView.BorderThickness>
+                                    <Label
+                                        TextColor="White"
+                                        Text="Send"/>
+                                </controls:ExtendedContentView>
+
+                                <controls:ExtendedContentView
+                                    BorderColor="#c1c1cc"
+                                    Grid.Column="1">
+                                    <controls:ExtendedContentView.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=DeclineComentTypingCommand}"/>
+                                    </controls:ExtendedContentView.GestureRecognizers>
+                                    <Label
+                                        TextColor="#347cff"
+                                        Text="Decline"/>
+                                </controls:ExtendedContentView>
+                            </Grid>
                         </StackLayout>
                     </Grid>
                 </ContentView>
 
-<!--Image attachment spot-->
+                <!--Image attachment spot-->
                 <ContentView
                     Padding="0,20,0,0"
                     IsVisible="{Binding Path=IsVisibleImagesSection,
@@ -347,7 +424,7 @@
                                 Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-<!--Images stack-->
+                        <!--Images stack-->
                         <controls:StackList
                             VerticalOptions="End"
                             HorizontalOptions="Start"
@@ -363,7 +440,7 @@
                             </controls:StackList.ItemTemplate>
                         </controls:StackList>
 
-<!--Add image button-->
+                        <!--Add image button-->
                         <Image
                             Margin="0,3,18,0"
                             Source="{toolkitExtensions:ImageResourceExtension 

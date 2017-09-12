@@ -101,6 +101,12 @@
                     <TapGestureRecognizer
                         Command="{Binding Path=HomeCommand}"/>
                 </controls:ExtendedContentView.GestureRecognizers>
+                <controls:ExtendedContentView.BorderThickness>
+                    <OnPlatform
+                        x:TypeArguments="x:Int32"
+                        Android="3"
+                        iOS="1" />
+                </controls:ExtendedContentView.BorderThickness>
                 <Label
                     TextColor="#347cff"
                     Text="Home"/>
