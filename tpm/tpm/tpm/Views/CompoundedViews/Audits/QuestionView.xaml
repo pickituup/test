@@ -382,12 +382,6 @@
                                         <TapGestureRecognizer
                                             Command="{Binding Path=AddCommentCommand}"/>
                                     </controls:ExtendedContentView.GestureRecognizers>
-                                    <controls:ExtendedContentView.BorderThickness>
-                                        <OnPlatform
-                                            x:TypeArguments="x:Int32"
-                                            Android="3"
-                                            iOS="1" />
-                                    </controls:ExtendedContentView.BorderThickness>
                                     <Label
                                         TextColor="White"
                                         Text="Send"/>
@@ -400,6 +394,12 @@
                                         <TapGestureRecognizer
                                             Command="{Binding Path=DeclineComentTypingCommand}"/>
                                     </controls:ExtendedContentView.GestureRecognizers>
+                                    <controls:ExtendedContentView.BorderThickness>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Int32"
+                                            Android="3"
+                                            iOS="1" />
+                                    </controls:ExtendedContentView.BorderThickness>
                                     <Label
                                         TextColor="#347cff"
                                         Text="Decline"/>
