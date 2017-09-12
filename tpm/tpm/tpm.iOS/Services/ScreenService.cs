@@ -12,6 +12,7 @@ namespace tpm.iOS.Services {
         /// 
         /// </summary>
         public void DefaultOrientation() {
+            AppDelegate.OrientationLock = UIInterfaceOrientationMask.Portrait;
             UIDevice.CurrentDevice.SetValueForKey(new Foundation.NSNumber((int)UIInterfaceOrientation.Portrait), new Foundation.NSString("orientation"));
         }
 
