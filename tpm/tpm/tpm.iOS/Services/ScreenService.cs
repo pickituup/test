@@ -4,7 +4,7 @@ using System.Text;
 using tpm.DependencyServices;
 using UIKit;
 
-[assembly: Xamarin.Forms.Dependency(typeof(tpm.iOS.Services.SqlLiteService))]
+[assembly: Xamarin.Forms.Dependency(typeof(tpm.iOS.Services.ScreenService))]
 namespace tpm.iOS.Services {
     public sealed class ScreenService : IScreenService {
 
