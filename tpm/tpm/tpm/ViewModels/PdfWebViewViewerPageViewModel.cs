@@ -9,13 +9,20 @@ using tpm.NavigationFramework;
 using Xamarin.Forms;
 
 namespace tpm.ViewModels {
-    public sealed class PdfWebViewViewerPageViewModel: ViewModelBase, IViewModel {
+    public sealed class PdfWebViewViewerPageViewModel :BasePageViewModel, IViewModel {
+
+        private bool _isOneStepBackAvailable = false;
+        private string _actionBarHeader;
 
         /// <summary>
         /// Public ctor.
         /// </summary>
         public PdfWebViewViewerPageViewModel() {
-            ClosePageCommand = new Command(() => OneStepBackViewNavigation());
+            //ClosePageCommand = new Command(() => OneStepBackViewNavigation());
+            StepBackCommand = new Command(() => OneStepBackViewNavigation());
+
+            IsOneStepBackAvailable = true;
+            ActionBarHeader = _actionBarHeader = "Pdf viewing";
         }
 
         /// <summary>
@@ -24,6 +31,30 @@ namespace tpm.ViewModels {
         public ICommand ClosePageCommand {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand StepBackCommand {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override string ActionBarHeader {
+            get => _actionBarHeader;
+            protected set => SetProperty<string>(ref _actionBarHeader, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsOneStepBackAvailable {
+            get => _isOneStepBackAvailable;
+            private set => SetProperty<bool>(ref _isOneStepBackAvailable, value);
         }
 
         /// <summary>

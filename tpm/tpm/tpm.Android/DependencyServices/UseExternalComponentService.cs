@@ -26,8 +26,30 @@ namespace tpm.Droid.DependencyServices {
         /// <summary>
         /// 
         /// </summary>
+        public void IntentToSentMailWithPDF(string email) {
+            string docsPath = FileHelper.GetExternalTpmDirPath();
+            string fullFilePath = Path.Combine(docsPath, FileHelper.GENERATED_PDF_FILE_NAME);
+
+            Java.IO.File file = new Java.IO.File(fullFilePath);
+            file.SetReadable(true, false);
+
+            Android.Net.Uri pdfUrl = Android.Net.Uri.FromFile(file);
+
+            Intent emailIntent = new Intent(Android.Content.Intent.ActionSend);
+            emailIntent.SetType("application/pdf");
+            emailIntent.PutExtra(Android.Content.Intent.ExtraEmail, new String[] { email });
+            emailIntent.PutExtra(Android.Content.Intent.ExtraSubject, "TPM subject");
+            emailIntent.PutExtra(Android.Content.Intent.ExtraText, "TPM application");
+            emailIntent.PutExtra(Intent.ExtraStream, pdfUrl);
+
+            Xamarin.Forms.Forms.Context.StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
+        }
+
+        /// <summary>
+        /// Not used. Remove.
+        /// </summary>
         /// <param name="src"></param>
-        public void IntentToOpenWebSource(string src) {
+        private void IntentToOpenWebSource(string src) {
             Intent intent = new Intent(Intent.ActionView);
             intent.SetData(Android.Net.Uri.Parse(src));
 
@@ -35,9 +57,9 @@ namespace tpm.Droid.DependencyServices {
         }
 
         /// <summary>
-        /// 
+        /// Not used. Remove.
         /// </summary>
-        public void IntentToDisplayRelativeFile(string fileName) {
+        private void IntentToDisplayRelativeFile(string fileName) {
             string docsPath = FileHelper.GetExternalTpmDirPath();
             string fullFilePath = Path.Combine(docsPath, fileName);
 
@@ -51,28 +73,6 @@ namespace tpm.Droid.DependencyServices {
             intent.SetFlags(ActivityFlags.ClearTop);
 
             Forms.Context.StartActivity(Intent.CreateChooser(intent, "Open with:"));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void IntentToSentMailWithPDF(string email) {
-            string docsPath = FileHelper.GetExternalTpmDirPath();
-            string fullFilePath = Path.Combine(docsPath, FileHelper.GENERATED_PDF_FILE_NAME);
-
-            Java.IO.File file = new Java.IO.File(fullFilePath);
-            file.SetReadable(true, false);
-
-            global::Android.Net.Uri pdfUrl = global::Android.Net.Uri.FromFile(file);
-
-            Intent emailIntent = new Intent(Android.Content.Intent.ActionSend);
-            //emailIntent.SetType("application/image");
-            emailIntent.SetType("application/image");
-            emailIntent.PutExtra(Android.Content.Intent.ExtraEmail, new String[] { email });
-            emailIntent.PutExtra(Android.Content.Intent.ExtraSubject, "Test TPM message Subject");
-            emailIntent.PutExtra(Android.Content.Intent.ExtraText, "From TPM application");
-            emailIntent.PutExtra(Intent.ExtraStream, pdfUrl);
-            Xamarin.Forms.Forms.Context.StartActivity(Intent.CreateChooser(emailIntent, "Send mail..."));
         }
     }
 }

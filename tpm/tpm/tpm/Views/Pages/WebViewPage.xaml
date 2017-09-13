@@ -1,26 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:BasePage
-    x:Class="tpm.Views.Pages.WebViewPage"
+<local:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:tpm.Views.Controls"
     xmlns:local="clr-namespace:tpm.Views.Pages"
-    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions">
+    xmlns:controls="clr-namespace:tpm.Views.Controls"
+    xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
+    x:Class="tpm.Views.Pages.WebViewPage">
 
     <Grid>
-        <controls:ExtendedWebView x:Name="_webFrame_WebView" />
+        <controls:ExtendedWebView
+            x:Name="_webFrame_WebView"
+            BackgroundColor="Red"/>
 
         <Image
-            Margin="10,0,0,0"
-            Aspect="AspectFill"
-            HeightRequest="30"
-            HorizontalOptions="End"
-            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_decline_no_border_blue.png}"
+            Margin="10"
             VerticalOptions="Start"
-            WidthRequest="30">
+            HorizontalOptions="End"
+            WidthRequest="30"
+            HeightRequest="30"
+            Aspect="AspectFill"
+            Source="{toolkitExtensions:ImageResourceExtension 
+                Source=tpm.Resourses.Img.ic_decline_no_border_blue.png}">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Path=ClosePageCommand}" />
+                <TapGestureRecognizer
+                        Command="{Binding Path=ClosePageCommand}"/>
             </Image.GestureRecognizers>
+            <Image.IsVisible>
+                <OnPlatform
+                    x:TypeArguments="x:Boolean"
+                    Android="false"
+                    iOS="true" />
+            </Image.IsVisible>
         </Image>
     </Grid>
 </local:BasePage>

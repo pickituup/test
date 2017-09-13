@@ -55,7 +55,7 @@
             Orientation="Horizontal">
 
             <!--Back button spot-->
-            <StackLayout
+            <!--<StackLayout
                 Margin="5,0,0,0"
                 VerticalOptions="Center"
                 HorizontalOptions="StartAndExpand"
@@ -73,7 +73,7 @@
                     VerticalTextAlignment="Center"
                     FontAttributes="Bold"
                     Text="Back"/>
-            </StackLayout>
+            </StackLayout>-->
 
             <!--Start over/publish-->
             <StackLayout

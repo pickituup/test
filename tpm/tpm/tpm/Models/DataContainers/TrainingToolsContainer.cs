@@ -60,7 +60,7 @@ namespace tpm.Models.DataContainers {
         */
 
         /// <summary>
-        /// 
+        /// Old link - remove it https://drive.google.com/uc?authuser=0&id=0B62wyfOLiDX8NVNQemdHR1JBRDg&export=download
         /// </summary>
         /// <returns></returns>
         public List<TrainingToolsItem> BuildWebinarItems() {
@@ -73,7 +73,7 @@ namespace tpm.Models.DataContainers {
                         Assembly assembly = GetType().GetTypeInfo().Assembly;
                         Stream stream = assembly.GetManifestResourceStream("tpm.Resourses.Img.ic_pdf.png");
                         return stream; }),
-                    FirstItemTitle = "File name",
+                    FirstItemTitle = "Walk work surfaces",
                     SeondItemIcon = ImageSource.FromStream(()=> {
                         Assembly assembly = GetType().GetTypeInfo().Assembly;
                         Stream stream = assembly.GetManifestResourceStream("tpm.Resourses.Img.ic_download_fill_blue_bg.png");

@@ -31,7 +31,8 @@ namespace tpm.ViewModels {
                 if (DependencyService.Get<IFileHelper>().IsFileExists(fullPath)) {
                     BaseSingleton<PageSwitchingLogic>.Instance
                         .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
-                } else {
+                }
+                else {
                     ToggleGoThroughLinkCommandExecution(false);
 
                     if (await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src)) {
@@ -45,7 +46,7 @@ namespace tpm.ViewModels {
                     }
 
                     ToggleGoThroughLinkCommandExecution(true);
-            }
+                }
             }, () => _canExecuteGoThroughLinkCommand);
         }
 

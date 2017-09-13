@@ -107,8 +107,8 @@ namespace tpm.Droid.DependencyServices {
 
             return Task<bool>.Run(() => {
                 try {
-
                     HttpWebRequest request = new HttpWebRequest(new Uri(src));
+                    
 
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     using (Stream stream = response.GetResponseStream())
@@ -118,6 +118,12 @@ namespace tpm.Droid.DependencyServices {
                         //
                         fileStream.SetLength(0);
                         stream.CopyTo(fileStream);
+
+                        //byte[] b = new byte[32768];
+                        //int r;
+                        //while ((r = stream.Read(b, 0, b.Length)) > 0) {
+                        //    fileStream.Write(b, 0, r);
+                        //}
                     }
 
                     Notify("Downloading the source", "TPM", "Download complete", InitPendingIntent());

@@ -8,18 +8,18 @@
     xmlns:compoundedViews="clr-namespace:tpm.Views.CompoundedViews"
     x:Class="tpm.Views.Pages.AuditPage"
     IsAwaiting="{Binding Path=IsAwaiting}"
-    Menu="{Binding 
-        Path=Menu}">
+    Menu="{Binding Path=Menu}">
 
     <local:BasePage.ActionBar>
         <!--Old action bar with toogled 'Completed' button-->
-        <!--<actionBars:AuditActionBar/>-->
-        <actionBars:CommonActionBar/>
+        <actionBars:AuditActionBar
+            IsOneStepBackAvailable="{Binding Path=IsOneStepBackAvailable}"/>
+        
+        <!--<actionBars:CommonActionBar/>-->
     </local:BasePage.ActionBar>
 
     <local:BasePage.MainContent>
-
-<!--Shared spot for assesment, form, questions views-->
+        <!--Shared spot for assesment, form, questions views-->
         <ContentView
             Content="{Binding Path=ViewSection}">
         </ContentView>

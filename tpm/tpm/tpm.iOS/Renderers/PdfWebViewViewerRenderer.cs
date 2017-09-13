@@ -28,7 +28,7 @@ namespace tpm.iOS.Renderers {
                 // Cleanup
             }
             if (e.NewElement != null) {
-                var customWebView = Element as PdfWebViewViewer;
+                PdfWebViewViewer customWebView = Element as PdfWebViewViewer;
                 string fileName = WebUtility.UrlEncode(customWebView.Uri);
                 Control.LoadRequest(new NSUrlRequest(new NSUrl(fileName)));
                 Control.ScalesPageToFit = true;

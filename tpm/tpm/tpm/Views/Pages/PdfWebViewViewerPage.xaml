@@ -3,17 +3,24 @@
     x:Class="tpm.Views.Pages.PdfWebViewViewerPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:tpm.Views.CompoundedViews"
     xmlns:controls="clr-namespace:tpm.Views.Controls"
     xmlns:local="clr-namespace:tpm.Views.Pages"
     xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions">
 
-    <Grid>
-        <controls:PdfWebViewViewer
+    <local:BasePage.ActionBar>
+        <actionBars:AuditActionBar
+            IsOneStepBackAvailable="{Binding Path=IsOneStepBackAvailable}"/>
+    </local:BasePage.ActionBar>
+    
+    <local:BasePage.MainContent>
+        <Grid>
+            <controls:PdfWebViewViewer
             x:Name="_pdfViewer_PdfWebViewViewer"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand" />
 
-        <Image
+            <!--<Image
             Margin="10,0,0,0"
             Aspect="AspectFill"
             HeightRequest="30"
@@ -24,6 +31,7 @@
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Path=ClosePageCommand}" />
             </Image.GestureRecognizers>
-        </Image>
-    </Grid>
+        </Image>-->
+        </Grid>
+    </local:BasePage.MainContent>
 </local:BasePage>

@@ -38,7 +38,7 @@ namespace tpm.Droid.Renderers {
                 //Control.LoadUrl(string.Format("http://docs.google.com/gview?embedded=true&url={0}", System.Net.WebUtility.UrlEncode(customWebView.Uri)));
                 Control.LoadUrl(string.Format("file:///android_asset/pdfviewer/index.html?file={0}", System.Net.WebUtility.UrlEncode(customWebView.Uri)));
             }
-
+            
         }
     }
 }

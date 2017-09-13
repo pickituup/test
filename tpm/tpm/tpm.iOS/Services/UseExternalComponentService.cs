@@ -11,22 +11,6 @@ namespace tpm.iOS.Services {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fileName"></param>
-        public void IntentToDisplayRelativeFile(string fileName) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="src"></param>
-        public void IntentToOpenWebSource(string src) {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="email"></param>
         public void IntentToSentMailWithPDF(string email) {
             string docsPath = FileHelperService.GetInternalTpmDirPath();

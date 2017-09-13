@@ -74,7 +74,7 @@
                 IsNotVisible="{Binding Path=WebViewIsNotVisible}"
                 Source="{Binding Path=TrainingsToolItem.VideoSourceLink}"/>
         </ContentView>
-
+        
         <!--Content container-->
         <StackLayout
             Padding="0,0,0,15"
@@ -82,7 +82,7 @@
             Grid.Row="1"
             IsVisible="{Binding Path=TrainingsToolItem.TextContent,
                 Converter={StaticResource Key=string_to_bool_converter}}">
-
+            
             <!--Text content-->
             <ContentView
                 Padding="0,0,0,15">
@@ -102,10 +102,10 @@
                         Android="3"
                         iOS="1" />
                 </controls:ExtendedContentView.BorderThickness>
-
+                
                 <StackLayout
                     Orientation="Horizontal">
-
+                    
                     <!--First item-->
                     <StackLayout
                         HorizontalOptions="StartAndExpand"

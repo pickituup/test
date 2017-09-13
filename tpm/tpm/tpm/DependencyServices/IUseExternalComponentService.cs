@@ -8,21 +8,20 @@ namespace tpm.DependencyServices {
     public interface IUseExternalComponentService {
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="src"></param>
-        void IntentToOpenWebSource(string src);
-
-        /// <summary>
-        /// Forms intent to sent the PDF to the email
-        /// TODO: can be removed to the IUseExternalComponentService
+        ///
         /// </summary>
         void IntentToSentMailWithPDF(string email);
 
         /// <summary>
-        /// 
+        /// Not used
+        /// </summary>
+        /// <param name="src"></param>
+        //void IntentToOpenWebSource(string src);
+
+        /// <summary>
+        /// Not used
         /// </summary>
         /// <param name="fileName"></param>
-        void IntentToDisplayRelativeFile(string fileName);
+        //void IntentToDisplayRelativeFile(string fileName);
     }
 }

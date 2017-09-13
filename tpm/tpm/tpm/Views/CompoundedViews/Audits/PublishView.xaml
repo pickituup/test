@@ -95,7 +95,6 @@
 
             <controls:ExtendedContentView
                 Grid.Column="0"
-                BorderThickness="3"
                 BorderColor="#c1c1cc">
                 <controls:ExtendedContentView.GestureRecognizers>
                     <TapGestureRecognizer

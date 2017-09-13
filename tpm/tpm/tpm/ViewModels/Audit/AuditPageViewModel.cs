@@ -30,7 +30,8 @@ namespace tpm.ViewModels {
             _reviewHeader = "Review";
 
         private string _actionBarHeader;
-        public bool _isVisibleCompletededSection = false;
+        private bool _isVisibleCompletededSection = false;
+        private bool _isOneStepBackAvailable = false;
         private IAuditView _viewSection;
 
         private PdfDrawing _pdfDrawing = new PdfDrawing();
@@ -42,6 +43,7 @@ namespace tpm.ViewModels {
             MenuItems.First(i => i.PageType == PageTypes.AuditPage).IsSelected = true;
             ActionBarHeader = _actionBarHeader = _auditHeader;
 
+            IsOneStepBackAvailable = false;
             ViewSection = BaseSingleton<AuditSwitchingLogic>.Instance.GetViewByType(AuditViewTypes.AssesmentView);
 
             CompletedCommand = new Command(async () => {
@@ -62,6 +64,10 @@ namespace tpm.ViewModels {
                 ////ViewSection = BaseSingleton<AuditSwitchingLogic>.Instance.GetViewByType(AuditViewTypes.ReviewView);
                 //await UpdateViewSectionAsync(AuditViewTypes.ReviewView);
             });
+
+            StepBackCommand = new Command(() => {
+                AuditOneStepBackViewNavigation();
+            });
         }
 
         /// <summary>
@@ -69,6 +75,22 @@ namespace tpm.ViewModels {
         /// TODO: maby use some singletone of profile helper...
         /// </summary>
         public static User User {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsOneStepBackAvailable {
+            get => _isOneStepBackAvailable;
+            private set => SetProperty<bool>(ref _isOneStepBackAvailable, value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand StepBackCommand {
             get;
             private set;
         }
@@ -94,7 +116,10 @@ namespace tpm.ViewModels {
         /// </summary>
         public IAuditView ViewSection {
             get => _viewSection;
-            private set => SetProperty<IAuditView>(ref _viewSection, value);
+            private set {
+                SetProperty<IAuditView>(ref _viewSection, value);
+                SwapMenuOneStapBackButtons();
+            }
         }
 
         /// <summary>
@@ -284,6 +309,16 @@ namespace tpm.ViewModels {
 
                 IsAwaiting = false;
             });
+        }
+
+        private void SwapMenuOneStapBackButtons() {
+            if (ViewSection.GetType() == typeof(AssesmentView)) {
+                IsOneStepBackAvailable = false;
+
+                return;
+            }
+
+            IsOneStepBackAvailable = true;
         }
     }
 }

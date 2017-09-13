@@ -76,7 +76,8 @@ namespace tpm.iOS.Services {
                     }
 
                     return true;
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     return false;
                 }
             });

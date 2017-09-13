@@ -22,6 +22,7 @@ namespace tpm.Views.Pages {
 
             BindingContext = _viewModel = new AuditPageViewModel();
         }
+        
 
         /// <summary>
         /// INavigatedView implementation
