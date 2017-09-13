@@ -11,7 +11,7 @@ using Xamarin.Forms;
 namespace tpm.Models.DataContainers {
     public sealed class TrainingToolsContainer {
 
-        /*
+        /* old items
          return new List<TrainingToolsItem>() {
                 new TrainingToolsItem() {
                     Index = 1,
@@ -58,6 +58,7 @@ namespace tpm.Models.DataContainers {
                     Src="https://www.xamarin.com/"
                 }
         */
+
         /// <summary>
         /// 
         /// </summary>
