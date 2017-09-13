@@ -28,11 +28,10 @@ namespace tpm.ViewModels {
                 string fullPath =
                     System.IO.Path.Combine(DependencyService.Get<IFileHelper>().TpmDictionaryPath, DependencyService.Get<IFileHelper>().DownloadedPdfFileName);
 
-                //if (DependencyService.Get<IFileHelper>().IsFileExists(fullPath)) {
-                //    BaseSingleton<PageSwitchingLogic>.Instance
-                //        .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
-                //}
-                //else {
+                if (DependencyService.Get<IFileHelper>().IsFileExists(fullPath)) {
+                    BaseSingleton<PageSwitchingLogic>.Instance
+                        .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
+                } else {
                     ToggleGoThroughLinkCommandExecution(false);
 
                     if (await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src)) {
@@ -46,7 +45,7 @@ namespace tpm.ViewModels {
                     }
 
                     ToggleGoThroughLinkCommandExecution(true);
-                //}
+            }
             }, () => _canExecuteGoThroughLinkCommand);
         }
 

@@ -79,7 +79,11 @@ namespace tpm.Models.DataContainers {
                         return stream; }),
                     SecondItemTitle="3mb",
                     DownloadSrc = true,
-                    Src = "http://ccidahra.com/wp-content/uploads/2016/03/sample.ppt"
+                    //
+                    // TODO: very important should have directly download source like "https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf".
+                    // No GoogleDrives or smth else. (Android can download from GoogleDrive, iOS - can't (stream reading issue)).
+                    //
+                    Src = "https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf"
                 }
             };
         }

@@ -29,8 +29,8 @@ namespace tpm.iOS.Renderers {
             }
             if (e.NewElement != null) {
                 var customWebView = Element as PdfWebViewViewer;
-                string fileName = Path.Combine(NSBundle.MainBundle.BundlePath, string.Format("Content/{0}", WebUtility.UrlEncode(customWebView.Uri)));
-                Control.LoadRequest(new NSUrlRequest(new NSUrl(fileName, false)));
+                string fileName = WebUtility.UrlEncode(customWebView.Uri);
+                Control.LoadRequest(new NSUrlRequest(new NSUrl(fileName)));
                 Control.ScalesPageToFit = true;
             }
         }

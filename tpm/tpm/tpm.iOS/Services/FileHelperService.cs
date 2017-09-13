@@ -62,8 +62,23 @@ namespace tpm.iOS.Services {
         /// <returns></returns>
         public Task<bool> DownloadSourceAsync(string src) {
             return Task<bool>.Run(() => {
-                return TEST_1(src);
-                //return TEST_2(src);
+                try {
+                    HttpWebRequest request = new HttpWebRequest(new Uri(src));
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
+                        //
+                        // Clear all data from that file.
+                        //
+                        fileStream.SetLength(0);
+                        stream.CopyTo(fileStream);
+                    }
+
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
             });
         }
 
@@ -91,88 +106,5 @@ namespace tpm.iOS.Services {
         /// <returns></returns>
         public bool IsFileExists(string fullFilePath) =>
             File.Exists(fullFilePath);
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
-        private bool TEST_1(string src) {
-            try {
-                HttpWebRequest request = new HttpWebRequest(new Uri(src));
-
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
-                    //
-                    // Clear all data from that file.
-                    //
-                    fileStream.SetLength(0);
-                    stream.CopyTo(fileStream);
-
-                    //byte[] b = new byte[32768];
-                    //int r;
-                    //while ((r = stream.Read(b, 0, b.Length)) > 0) {
-                    //    fileStream.Write(b, 0, r);
-                    //}
-                }
-
-                return true;
-            }
-            catch (Exception e) {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
-        private bool TEST_2(string src) {
-            try {
-                string path = GetInternalTpmDirPath();
-                string hash = UrlHash(src);
-                path = Path.Combine(path, hash);
-
-                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
-                string newFilename = Path.Combine(path, DOWNLOADED_PDF_FILE_NAME);
-
-                if (File.Exists(newFilename)) {
-                    File.Delete(newFilename);
-                }
-
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(new Uri(src), newFilename);
-
-                return true;
-            }
-            catch (Exception e) {
-                return false;
-            }
-        }
-
-        private string UrlHash(string source) {
-            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
-
-            // Convert the input string to a byte array and compute the hash. 
-            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(source));
-
-            // Create a new Stringbuilder to collect the bytes 
-            // and create a string.
-            StringBuilder sBuilder = new StringBuilder();
-
-            // Loop through each byte of the hashed data  
-            // and format each one as a hexadecimal string. 
-            for (int i = 0; i < data.Length; i++) {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-
-            // Return the hexadecimal string. 
-            return sBuilder.ToString();
-        }
     }
 }
