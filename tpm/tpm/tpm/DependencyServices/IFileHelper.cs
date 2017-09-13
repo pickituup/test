@@ -21,7 +21,7 @@ namespace tpm.DependencyServices {
         /// <summary>
         /// 
         /// </summary>
-        string TpmExternalDictionaryPath { get; }
+        string TpmDictionaryPath { get; }
 
         /// <summary>
         /// Returns FileStream for PDF

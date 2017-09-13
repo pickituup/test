@@ -160,6 +160,7 @@
     <Compile Include="Renderers\EntryRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\ExtendedWebViewRenderer.cs" />
+    <Compile Include="Renderers\PdfWebViewViewerRenderer.cs" />
     <Compile Include="Services\FileHelperService.cs" />
     <Compile Include="Services\PickImageService.cs" />
     <Compile Include="Services\ScreenService.cs" />

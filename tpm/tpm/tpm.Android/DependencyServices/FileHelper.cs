@@ -55,7 +55,7 @@ namespace tpm.Droid.DependencyServices {
         /// <summary>
         /// 
         /// </summary>
-        public string TpmExternalDictionaryPath {
+        public string TpmDictionaryPath {
             get {
                 return GetExternalTpmDirPath();
             }

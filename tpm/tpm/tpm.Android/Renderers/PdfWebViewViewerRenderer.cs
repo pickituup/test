@@ -15,9 +15,9 @@ using Xamarin.Forms.Platform.Android;
 using System.ComponentModel;
 using Android.Graphics.Pdf;
 
-[assembly: ExportRenderer(typeof(PdfWebViewViewer), typeof(tpm.Droid.Renderers.CustomWebViewRenderer))]
+[assembly: ExportRenderer(typeof(PdfWebViewViewer), typeof(tpm.Droid.Renderers.PdfWebViewViewerRenderer))]
 namespace tpm.Droid.Renderers {
-    public sealed class CustomWebViewRenderer : WebViewRenderer {
+    public sealed class PdfWebViewViewerRenderer : WebViewRenderer {
 
         /// <summary>
         /// 
@@ -38,6 +38,7 @@ namespace tpm.Droid.Renderers {
                 //Control.LoadUrl(string.Format("http://docs.google.com/gview?embedded=true&url={0}", System.Net.WebUtility.UrlEncode(customWebView.Uri)));
                 Control.LoadUrl(string.Format("file:///android_asset/pdfviewer/index.html?file={0}", System.Net.WebUtility.UrlEncode(customWebView.Uri)));
             }
+
         }
     }
 }
