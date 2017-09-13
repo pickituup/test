@@ -110,6 +110,12 @@ namespace tpm.iOS.Services {
                     //
                     fileStream.SetLength(0);
                     stream.CopyTo(fileStream);
+
+                    //byte[] b = new byte[32768];
+                    //int r;
+                    //while ((r = stream.Read(b, 0, b.Length)) > 0) {
+                    //    fileStream.Write(b, 0, r);
+                    //}
                 }
 
                 return true;
@@ -119,6 +125,8 @@ namespace tpm.iOS.Services {
             }
         }
 
+        /// <summary>
+        /// 
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
