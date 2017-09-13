@@ -79,7 +79,7 @@ namespace tpm.Models.DataContainers {
                         return stream; }),
                     SecondItemTitle="3mb",
                     DownloadSrc = true,
-                    Src = "https://drive.google.com/uc?authuser=0&id=0B62wyfOLiDX8NVNQemdHR1JBRDg&export=download"
+                    Src = "http://ccidahra.com/wp-content/uploads/2016/03/sample.ppt"
                 }
             };
         }

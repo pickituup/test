@@ -62,8 +62,8 @@ namespace tpm.iOS.Services {
         /// <returns></returns>
         public Task<bool> DownloadSourceAsync(string src) {
             return Task<bool>.Run(() => {
-                //return TEST_1(src);
-                return TEST_2(src);
+                return TEST_1(src);
+                //return TEST_2(src);
             });
         }
 
