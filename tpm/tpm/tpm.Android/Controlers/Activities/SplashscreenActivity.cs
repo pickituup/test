@@ -12,7 +12,7 @@ using Android.Widget;
 
  
 namespace tpm.Droid.Controlers.Activities {
-    [Activity(Label = "@string/app_name", MainLauncher = true, Theme = "@style/SplashScreenTheme")]
+    [Activity( MainLauncher = true, Theme = "@style/SplashScreenTheme")]
     public class SplashscreenActivity : Android.Support.V7.App.AppCompatActivity {
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);

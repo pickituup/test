@@ -14,9 +14,8 @@ using System.Threading.Tasks;
 using tpm.Droid.Helpers;
 
 namespace tpm.Droid {
-    [Activity(Icon = "@drawable/icon",
-        Label = "@string/app_name",
-        MainLauncher = false, Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait,
+    [Activity(MainLauncher = false, 
+        ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation),]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 

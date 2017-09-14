@@ -39,7 +39,7 @@ namespace tpm.iOS.Services {
                 //
                 // Photo galery action
                 //
-                actionSheet.AddAction(UIAlertAction.Create("Item One", UIAlertActionStyle.Default, (action) => {
+                actionSheet.AddAction(UIAlertAction.Create("Photo galery", UIAlertActionStyle.Default, (action) => {
                     UIImagePickerController imagePicker = new UIImagePickerController();
                     imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
                     imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary);
@@ -69,7 +69,7 @@ namespace tpm.iOS.Services {
                 //
                 // Camera action
                 //
-                actionSheet.AddAction(UIAlertAction.Create("Item Two", UIAlertActionStyle.Default, (action) => {
+                actionSheet.AddAction(UIAlertAction.Create("Camera", UIAlertActionStyle.Default, (action) => {
                     if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
                         UIImagePickerController imagePicker = new UIImagePickerController();
                         imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;

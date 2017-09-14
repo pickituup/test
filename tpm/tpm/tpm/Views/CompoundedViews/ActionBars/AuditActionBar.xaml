@@ -6,6 +6,12 @@
     xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions"
     x:Class="tpm.Views.CompoundedViews.AuditActionBar">
 
+    <local:ActionBarBase.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness"
+            iOS="0,20,0,0" />
+    </local:ActionBarBase.Padding>
+
     <local:ActionBarBase.Resources>
         <ResourceDictionary>
             <Style
