@@ -40,7 +40,7 @@ namespace tpm.Droid.Helpers {
 
             float srcWidth = options.OutWidth;
             float srcHeight = options.OutHeight;
-
+            
             // Figure out how much to scale down by
             int inSampleSize = 1;
 

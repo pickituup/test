@@ -29,23 +29,15 @@ namespace tpm.ViewModels {
                     System.IO.Path.Combine(DependencyService.Get<IFileHelper>().TpmDictionaryPath, DependencyService.Get<IFileHelper>().DownloadedPdfFileName);
 
                 if (DependencyService.Get<IFileHelper>().IsFileExists(fullPath)) {
-                    BaseSingleton<PageSwitchingLogic>.Instance
-                        .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
-                }
-                else {
-                    ToggleGoThroughLinkCommandExecution(false);
-
-                    if (await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src)) {
-                        if (await DisplayAlert("Complete", "Download complete. Open pdf?", "Ok", "Cancel")) {
-                            BaseSingleton<PageSwitchingLogic>.Instance
-                                .DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
-                        }
+                    if (await DisplayAlert("File exists", "Subsequent download will replace the existing file. Continue download?","Ok","Cancel")) {
+                        DownloadFile(fullPath);
                     }
                     else {
-                        await DisplayAlert("Faild", "Download faild");
+                        OpenDownloadedPdfFile(fullPath);
                     }
-
-                    ToggleGoThroughLinkCommandExecution(true);
+                }
+                else {
+                    DownloadFile(fullPath);
                 }
             }, () => _canExecuteGoThroughLinkCommand);
         }
@@ -80,6 +72,31 @@ namespace tpm.ViewModels {
         private void ToggleGoThroughLinkCommandExecution(bool canExecute) {
             _canExecuteGoThroughLinkCommand = canExecute;
             ((Command)GoThroughLinkCommand).ChangeCanExecute();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private async void DownloadFile(string fullPath) {
+            ToggleGoThroughLinkCommandExecution(false);
+
+            if (await DependencyService.Get<IFileHelper>().DownloadSourceAsync(TrainingsToolItem.Src)) {
+                if (await DisplayAlert("Complete", "Download complete. Open pdf?", "Ok", "Cancel")) {
+                    OpenDownloadedPdfFile(fullPath);
+                }
+            }
+            else {
+                await DisplayAlert("Faild", "Download faild");
+            }
+
+            ToggleGoThroughLinkCommandExecution(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OpenDownloadedPdfFile(string fullPath) {
+            BaseSingleton<PageSwitchingLogic>.Instance.DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
         }
     }
 }

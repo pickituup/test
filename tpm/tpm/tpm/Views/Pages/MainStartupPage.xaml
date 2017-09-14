@@ -6,6 +6,11 @@
     xmlns:compoundedViewsMenu="clr-namespace:tpm.Views.CompoundedViews.Menu"
     x:Class="tpm.Views.Pages.MainStartupPage"
     NavigationPage.HasNavigationBar="False">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness"
+            iOS="0,20,0,0" />
+    </ContentPage.Padding>
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--Imlicit text color style for Label-->

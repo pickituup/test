@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:tpm.Views.Controls"
     xmlns:local="clr-namespace:tpm.Views.Pages"
     xmlns:toolkitExtensions="clr-namespace:tpm.ToolKit.Extensions">
+    
 
     <local:BasePage.ActionBar>
         <actionBars:AuditActionBar
@@ -19,19 +20,6 @@
             x:Name="_pdfViewer_PdfWebViewViewer"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand" />
-
-            <!--<Image
-            Margin="10,0,0,0"
-            Aspect="AspectFill"
-            HeightRequest="30"
-            HorizontalOptions="End"
-            Source="{toolkitExtensions:ImageResourceExtension Source=tpm.Resourses.Img.ic_decline_no_border_blue.png}"
-            VerticalOptions="End"
-            WidthRequest="30">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Path=ClosePageCommand}" />
-            </Image.GestureRecognizers>
-        </Image>-->
         </Grid>
     </local:BasePage.MainContent>
 </local:BasePage>

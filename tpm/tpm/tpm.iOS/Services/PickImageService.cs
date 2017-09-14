@@ -33,10 +33,13 @@ namespace tpm.iOS.Services {
                 //
                 // Action sheet
                 //
-                UIAlertController actionSheetAlert = UIAlertController.Create("Action Sheet", "Select an item from below", UIAlertControllerStyle.ActionSheet);
+                UIAlertController actionSheet = 
+                    UIAlertController.Create("Pick photo.", "Pick photo with:", UIAlertControllerStyle.ActionSheet);
 
-                // Add Actions
-                actionSheetAlert.AddAction(UIAlertAction.Create("Item One", UIAlertActionStyle.Default, (action) => {
+                //
+                // Photo galery action
+                //
+                actionSheet.AddAction(UIAlertAction.Create("Item One", UIAlertActionStyle.Default, (action) => {
                     UIImagePickerController imagePicker = new UIImagePickerController();
                     imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
                     imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary);
@@ -44,28 +47,11 @@ namespace tpm.iOS.Services {
                     imagePicker.FinishedPickingMedia += (sender, args) => {
                         if (args?.OriginalImage != null) {
                             //
-                            // TODO: changte scaling approach
-                            //
-                            //UIImage originalImage = args.OriginalImage.Scale(new CGSize(IMAGE_WIDTH_RESTRICTION, IMAGE_HEIGHT_RESTRICTION));
-
-                            nfloat srcWidth = args.OriginalImage.Size.Width;
-                            nfloat srcHeight = args.OriginalImage.Size.Height;
-
                             // Figure out how much to scale down by
-                            int inSampleSize = 1;
+                            //
+                            int inSampleSize = GetInSampleSize(args.OriginalImage.Size.Width, args.OriginalImage.Size.Height);
 
-                            if (srcHeight >= IMAGE_HEIGHT_RESTRICTION || srcWidth >= IMAGE_WIDTH_RESTRICTION) {
-                                if (srcHeight >= IMAGE_HEIGHT_RESTRICTION) {
-                                    inSampleSize = (int)Math.Round(srcHeight / IMAGE_HEIGHT_RESTRICTION);
-                                } else {
-                                    inSampleSize = (int)Math.Round(srcWidth / IMAGE_WIDTH_RESTRICTION);
-                                }
-                            }
-
-                            double outWidth = srcWidth / inSampleSize;
-                            double outHeight = srcHeight / inSampleSize;
-
-                            UIImage originalImage = args.OriginalImage.Scale(new CGSize(outWidth, outHeight));
+                            UIImage originalImage = args.OriginalImage.Scale(new CGSize(args.OriginalImage.Size.Width / inSampleSize, args.OriginalImage.Size.Height / inSampleSize));
                             imageBase64 = originalImage.AsPNG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
                         }
                         topController.DismissModalViewController(true);
@@ -80,14 +66,23 @@ namespace tpm.iOS.Services {
                     topController.PresentModalViewController(imagePicker, true);
                 }));
 
-                actionSheetAlert.AddAction(UIAlertAction.Create("Item Two", UIAlertActionStyle.Default, (action) => {
+                //
+                // Camera action
+                //
+                actionSheet.AddAction(UIAlertAction.Create("Item Two", UIAlertActionStyle.Default, (action) => {
                     if (UIImagePickerController.IsSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
                         UIImagePickerController imagePicker = new UIImagePickerController();
                         imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+                        imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.Camera);
 
                         imagePicker.FinishedPickingMedia += (sender, args) => {
                             if (args?.OriginalImage != null) {
-                                UIImage originalImage = args.OriginalImage.Scale(new CGSize(IMAGE_WIDTH_RESTRICTION, IMAGE_HEIGHT_RESTRICTION));
+                                //
+                                // Figure out how much to scale down by
+                                //
+                                int inSampleSize = GetInSampleSize(args.OriginalImage.Size.Width, args.OriginalImage.Size.Height);
+
+                                UIImage originalImage = args.OriginalImage.Scale(new CGSize(args.OriginalImage.Size.Width / inSampleSize, args.OriginalImage.Size.Height / inSampleSize));
                                 imageBase64 = originalImage.AsPNG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
                             }
                             topController.DismissModalViewController(true);
@@ -100,35 +95,55 @@ namespace tpm.iOS.Services {
                         };
 
                         topController.PresentModalViewController(imagePicker, true);
-                    } else {
-                        UIAlertController alertre = UIAlertController.Create("Warning", "Your device don't have camera", UIAlertControllerStyle.Alert);
-                        alertre.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (alertAction)=> {
+                    }
+                    else {
+                        UIAlertController alert = UIAlertController.Create("Warning", "Your device don't have camera", UIAlertControllerStyle.Alert);
+                        alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (alertAction) => {
                             imageBase64 = null;
                             task.Start();
                         }));
 
-                        topController.PresentViewController(alertre, true, null);
+                        topController.PresentViewController(alert, true, null);
                     }
                 }));
 
-                UIPopoverPresentationController presentationPopover = actionSheetAlert.PopoverPresentationController;
+
+                UIPopoverPresentationController presentationPopover = actionSheet.PopoverPresentationController;
                 if (presentationPopover != null) {
                     presentationPopover.SourceView = topController.View;
                     presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Up;
                 }
 
                 // Display the alert
-                topController.PresentViewController(actionSheetAlert, true, null);
-
-            } catch (Exception) {
-
+                topController.PresentViewController(actionSheet, true, null);
+            }
+            catch (Exception) {
                 imageBase64 = null;
                 task.Start();
             }
             return task;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="srcWidth"></param>
+        /// <param name="srcHeight"></param>
+        /// <returns></returns>
+        private int GetInSampleSize(nfloat srcWidth, nfloat srcHeight) {
+            int inSampleSize = 1;
 
+            if (srcHeight >= IMAGE_HEIGHT_RESTRICTION || srcWidth >= IMAGE_WIDTH_RESTRICTION) {
+                if (srcHeight >= IMAGE_HEIGHT_RESTRICTION) {
+                    inSampleSize = (int)Math.Round(srcHeight / IMAGE_HEIGHT_RESTRICTION);
+                }
+                else {
+                    inSampleSize = (int)Math.Round(srcWidth / IMAGE_WIDTH_RESTRICTION);
+                }
+            }
+
+            return inSampleSize;
+        }
 
         /// <summary>
         /// Old working version. Only pictures from photo galery can be selected.

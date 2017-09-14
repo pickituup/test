@@ -29,11 +29,11 @@ namespace tpm.Droid.DependencyServices {
         /// </summary>
         public FileHelper() {
             _mainNotificationBuilder = new Notification.Builder(Xamarin.Forms.Forms.Context)
-                .SetSmallIcon(Resource.Drawable.icon)
-                .SetLargeIcon(BitmapFactory.DecodeResource(Xamarin.Forms.Forms.Context.Resources, Resource.Drawable.icon))
-                .SetTicker("Foreground WorkerService")
-                .SetContentTitle("The title for notification")
-                .SetContentText("Main content text fro notification");
+                .SetSmallIcon(Resource.Drawable.ic_tpm_notification)
+                .SetLargeIcon(BitmapFactory.DecodeResource(Xamarin.Forms.Forms.Context.Resources, Resource.Drawable.ic_tpm_notification))
+                .SetTicker("Ticker text")
+                .SetContentTitle("Content title")
+                .SetContentText("Content text");
 
             _notificationManager = (NotificationManager)Xamarin.Forms.Forms.Context.GetSystemService(Context.NotificationService);
         }

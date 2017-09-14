@@ -14,7 +14,6 @@
         <!--Old action bar with toogled 'Completed' button-->
         <actionBars:AuditActionBar
             IsOneStepBackAvailable="{Binding Path=IsOneStepBackAvailable}"/>
-        
         <!--<actionBars:CommonActionBar/>-->
     </local:BasePage.ActionBar>
 

@@ -5,6 +5,11 @@
     xmlns:controls="clr-namespace:tpm.Views.Controls"
     x:Class="tpm.Views.Pages.BasePage"
     BackgroundColor="White">
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness"
+            iOS="0,20,0,0" />
+    </ContentPage.Padding>
 
     <Grid
         x:Name="_rootGrid_Grid"

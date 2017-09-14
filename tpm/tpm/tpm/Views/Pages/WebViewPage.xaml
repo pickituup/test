@@ -16,11 +16,11 @@
             Margin="10"
             VerticalOptions="Start"
             HorizontalOptions="End"
-            WidthRequest="30"
-            HeightRequest="30"
+            WidthRequest="40"
+            HeightRequest="40"
             Aspect="AspectFill"
             Source="{toolkitExtensions:ImageResourceExtension 
-                Source=tpm.Resourses.Img.ic_decline_no_border_blue.png}">
+                Source=tpm.Resourses.Img.ic_close_blue_filled_white_bg.png}">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer
                         Command="{Binding Path=ClosePageCommand}"/>
