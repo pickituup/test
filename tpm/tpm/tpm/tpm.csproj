@@ -71,7 +71,10 @@
     <Compile Include="NavigationFramework\PageNavigation\PageSwitchingLogic.cs" />
     <Compile Include="NavigationFramework\PageNavigation\PageTypes.cs" />
     <Compile Include="NavigationFramework\AuditPageNavigation\AuditSwitchingLogic.cs" />
+    <Compile Include="Pdf\IPdfCanBeDrawed.cs" />
     <Compile Include="Pdf\PdfDrawing.cs" />
+    <Compile Include="Pdf\PdfKreator.cs" />
+    <Compile Include="Pdf\UserPdfDrawingScheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolKit\Effects\UnderlineEffect.cs" />
     <Compile Include="ToolKit\Extensions\ImageResourceExtension.cs" />
@@ -236,6 +239,12 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Portable">
+      <HintPath>..\..\..\..\..\..\Desktop\SyncfusionEssentialStudio-14.3.0.49\SyncfusionEssentialStudio-14.3.0.49\lib\pcl\Syncfusion.Compression.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Portable">
+      <HintPath>..\..\..\..\..\..\Desktop\SyncfusionEssentialStudio-14.3.0.49\SyncfusionEssentialStudio-14.3.0.49\lib\pcl\Syncfusion.Pdf.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>

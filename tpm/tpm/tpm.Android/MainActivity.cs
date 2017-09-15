@@ -42,7 +42,7 @@ namespace tpm.Droid {
             Java.IO.File imageOutput =
                 Java.IO.File.CreateTempFile(
                     string.Format("tpm_pic_{0:dd MMM H:mm}", System.DateTime.Now),
-                    ".png",
+                    ".jpeg",
                     new Java.IO.File(DependencyServices.FileHelper.GetExternalTpmDirPath()));
             _capturedPictureFilePath = imageOutput.AbsolutePath;
             takePictureIntent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(imageOutput));
@@ -117,7 +117,7 @@ namespace tpm.Droid {
             byte[] bytes;
 
             using (MemoryStream memoryStream = new MemoryStream()) {
-                bitmap.Compress(Bitmap.CompressFormat.Png, 10, memoryStream);
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, memoryStream);
                 bytes = memoryStream.GetBuffer();
             }
 
@@ -151,7 +151,7 @@ namespace tpm.Droid {
             byte[] bytes;
 
             using (MemoryStream memoryStream = new MemoryStream()) {
-                bitmap.Compress(Bitmap.CompressFormat.Png, 10, memoryStream);
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, memoryStream);
                 bytes = memoryStream.GetBuffer();
             }
 

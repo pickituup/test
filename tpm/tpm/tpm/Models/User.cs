@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tpm.Pdf;
 
 namespace tpm.Models {
 
@@ -11,7 +12,7 @@ namespace tpm.Models {
     /// MemberSerialization.OptIn - serialized/deserialized only 'atributted parts'
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public sealed class User {
+    public sealed class User : IPdfCanBeDrawed {
 
         /// <summary>
         /// Public ctor.

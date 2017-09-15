@@ -22,6 +22,19 @@ namespace tpm.Droid.Renderers {
         /// <summary>
         /// 
         /// </summary>
+        protected override void OnDetachedFromWindow() {
+            base.OnDetachedFromWindow();
+
+            if (Control != null) {
+                Control.StopLoading();
+                Control.LoadUrl("");
+                Control.Reload();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="e"></param>
         protected override void OnElementChanged(ElementChangedEventArgs<WebView> e) {
             base.OnElementChanged(e);

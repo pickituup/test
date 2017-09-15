@@ -52,7 +52,7 @@ namespace tpm.iOS.Services {
                             int inSampleSize = GetInSampleSize(args.OriginalImage.Size.Width, args.OriginalImage.Size.Height);
 
                             UIImage originalImage = args.OriginalImage.Scale(new CGSize(args.OriginalImage.Size.Width / inSampleSize, args.OriginalImage.Size.Height / inSampleSize));
-                            imageBase64 = originalImage.AsPNG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
+                            imageBase64 = originalImage.AsJPEG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
                         }
                         topController.DismissModalViewController(true);
                         task.Start();
@@ -83,7 +83,7 @@ namespace tpm.iOS.Services {
                                 int inSampleSize = GetInSampleSize(args.OriginalImage.Size.Width, args.OriginalImage.Size.Height);
 
                                 UIImage originalImage = args.OriginalImage.Scale(new CGSize(args.OriginalImage.Size.Width / inSampleSize, args.OriginalImage.Size.Height / inSampleSize));
-                                imageBase64 = originalImage.AsPNG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
+                                imageBase64 = originalImage.AsJPEG().GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
                             }
                             topController.DismissModalViewController(true);
                             task.Start();

@@ -12,8 +12,6 @@ using tpm.Models;
 using tpm.Views.CompoundedViews;
 using System.IO;
 using tpm.DependencyServices;
-using Xfinium.Pdf;
-using Xfinium.Pdf.Graphics;
 using tpm.Helpers;
 using tpm.Helpers.Observers.Audits;
 using tpm.Helpers.Observers.Args;
@@ -35,6 +33,7 @@ namespace tpm.ViewModels {
         private IAuditView _viewSection;
 
         private PdfDrawing _pdfDrawing = new PdfDrawing();
+        private UserPdfDrawingScheme _userPdfDrawingScheme = new UserPdfDrawingScheme();
 
         /// <summary>
         /// Public ctor.
@@ -213,15 +212,24 @@ namespace tpm.ViewModels {
             User = DependencyService.Get<ISqlLiteService>().GetFirstOrDefaultUser();
 
             if (User == null) {
-                //ViewSection = BaseSingleton<AuditSwitchingLogic>.Instance.GetViewByType(AuditViewTypes.EnterInfoView);
+                ViewSection = BaseSingleton<AuditSwitchingLogic>.Instance.GetViewByType(AuditViewTypes.EnterInfoView);
                 await UpdateViewSectionAsync(AuditViewTypes.EnterInfoView);
             }
             else {
-                //
-                // TODO: display questions list section
-                //
                 BaseSingleton<AuditScopeObserver>.Instance.OnBeginAnsweringTheQuestions(User);
             }
+
+            //await _userPdfDrawingScheme.DrawAsync(User);
+            ////
+            //// TESTING
+            ////
+            //string fullPath =
+            //    System.IO.Path.Combine(DependencyService.Get<IFileHelper>().TpmDictionaryPath, DependencyService.Get<IFileHelper>().GeneratedPdfFileName);
+            //BaseSingleton<PageSwitchingLogic>.Instance.DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
+            ////
+            //// TESTING
+            ////
+
         }
 
         /// <summary>
@@ -289,9 +297,20 @@ namespace tpm.ViewModels {
         private async void OnPublish(object sender, PublishEventArgs e) {
             IsAwaiting = true;
 
-            await _pdfDrawing.DrawAsync(User);
-            DependencyService.Get<IUseExternalComponentService>().IntentToSentMailWithPDF(e.Email);
-            //DependencyService.Get<IFileHelper>().IntentToDisplayPDF();
+            //await _userPdfDrawingScheme.DrawAsync(User);
+
+            await new UserPdfDrawingScheme().DrawAsync(User);
+            //
+            // TESTING
+            //
+            string fullPath =
+                System.IO.Path.Combine(DependencyService.Get<IFileHelper>().TpmDictionaryPath, DependencyService.Get<IFileHelper>().GeneratedPdfFileName);
+            BaseSingleton<PageSwitchingLogic>.Instance.DisplayWebViewPage(fullPath, PageTypes.PdfWebViewViewerPage);
+            //
+            // TESTING
+            //
+
+            //DependencyService.Get<IUseExternalComponentService>().IntentToSentMailWithPDF(e.Email);
 
             IsAwaiting = false;
         }
@@ -311,6 +330,9 @@ namespace tpm.ViewModels {
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SwapMenuOneStapBackButtons() {
             if (ViewSection.GetType() == typeof(AssesmentView)) {
                 IsOneStepBackAvailable = false;
