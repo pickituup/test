@@ -84,7 +84,7 @@ namespace tpm.Models.DataContainers {
                     // TODO: very important should have directly download source like "https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf".
                     // No GoogleDrives or smth else. (Android can download from GoogleDrive, iOS - can't (stream reading issue)).
                     //
-                    Src = "https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf"
+                    Src = "https://conicapps.com/tmp_downloadppt"
                 }
             };
         }
