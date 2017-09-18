@@ -62,24 +62,7 @@ namespace tpm.iOS.Services {
         /// <returns></returns>
         public Task<bool> DownloadSourceAsync(string src) {
             return Task<bool>.Run(() => {
-                try {
-                    HttpWebRequest request = new HttpWebRequest(new Uri(src));
-
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                    using (Stream stream = response.GetResponseStream())
-                    using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
-                        //
-                        // Clear all data from that file.
-                        //
-                        fileStream.SetLength(0);
-                        stream.CopyTo(fileStream);
-                    }
-
-                    return true;
-                }
-                catch (Exception e) {
-                    return false;
-                }
+                return Demo1(src);
             });
         }
 
@@ -107,5 +90,57 @@ namespace tpm.iOS.Services {
         /// <returns></returns>
         public bool IsFileExists(string fullFilePath) =>
             File.Exists(fullFilePath);
+
+        private bool Demo1(string src) {
+            try {
+                HttpWebRequest request = new HttpWebRequest(new Uri(src));
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
+                    //
+                    // Clear all data from that file.
+                    //
+                    fileStream.SetLength(0);
+                    stream.CopyTo(fileStream);
+                }
+
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
+        }
+
+        private bool Demo2(string src) {
+            try {
+                HttpWebRequest request = new HttpWebRequest(new Uri(src));
+                request.ch
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (FileStream fileStream = System.IO.File.Open(System.IO.Path.Combine(GetInternalTpmDirPath(), DOWNLOADED_PDF_FILE_NAME), FileMode.Create)) {
+                    //
+                    // Clear all data from that file.
+                    //
+                    fileStream.SetLength(0);
+
+                    byte[] buffer = new byte[8192];
+                    int count = 0;
+
+                    do {
+                        count = stream.Read(buffer, 0, buffer.Length);
+                        if (count != 0) {
+                            fileStream.Write(buffer, 0, buffer.Length);
+                        }
+                    } while (count > 0);
+                }
+
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
+        }
     }
 }
