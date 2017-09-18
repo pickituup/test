@@ -115,7 +115,6 @@ namespace tpm.iOS.Services {
         private bool Demo2(string src) {
             try {
                 HttpWebRequest request = new HttpWebRequest(new Uri(src));
-                request.ch
 
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (Stream stream = response.GetResponseStream())
