@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{614F3A16-25C8-4960-B7BD-6AEC61FF927E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>tpm</RootNamespace>
+    <AssemblyName>tpm</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyServices\IFileHelper.cs" />
+    <Compile Include="DependencyServices\IPackageInfo.cs" />
+    <Compile Include="DependencyServices\IScreenService.cs" />
+    <Compile Include="DependencyServices\IPickImageService.cs" />
+    <Compile Include="DependencyServices\ISqlLiteService.cs" />
+    <Compile Include="DependencyServices\IUseExternalComponentService.cs" />
+    <Compile Include="Helpers\BaseSingleton.cs" />
+    <Compile Include="Helpers\ObservableObject.cs" />
+    <Compile Include="Helpers\Builders\ViewBuilders\IView.cs" />
+    <Compile Include="Helpers\Observers\Args\PublishEventArgs.cs" />
+    <Compile Include="Helpers\Observers\Args\UserEventArgs.cs" />
+    <Compile Include="Helpers\Observers\Audits\AuditScopeObserver.cs" />
+    <Compile Include="Models\AttachedComment.cs" />
+    <Compile Include="Models\AttachedImage.cs" />
+    <Compile Include="Models\DataContainers\DataItems\MenuItem.cs" />
+    <Compile Include="Models\DataContainers\DataItems\TrainingToolsItem.cs" />
+    <Compile Include="Models\DataContainers\DataItems\WebinarItem.cs" />
+    <Compile Include="Models\DataContainers\MenuContainer.cs" />
+    <Compile Include="Models\DataContainers\TrainingToolsContainer.cs" />
+    <Compile Include="Models\DataContainers\WebinarsContainer.cs" />
+    <Compile Include="Models\DataGroup.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="NavigationFramework\AuditPageNavigation\AuditViewsContainer.cs" />
+    <Compile Include="NavigationFramework\AuditPageNavigation\AuditViewTypes.cs" />
+    <Compile Include="NavigationFramework\AuditPageNavigation\IAuditView.cs" />
+    <Compile Include="NavigationFramework\AuditPageNavigation\AuditViewBuilder.cs" />
+    <Compile Include="NavigationFramework\PageNavigation\INavigatedPage.cs" />
+    <Compile Include="NavigationFramework\PageNavigation\PageBuider.cs" />
+    <Compile Include="Helpers\Builders\ViewBuilders\ViewBuilderBase.cs" />
+    <Compile Include="NavigationFramework\PageNavigation\PageContainer.cs" />
+    <Compile Include="NavigationFramework\PageNavigation\PageSwitchingLogic.cs" />
+    <Compile Include="NavigationFramework\PageNavigation\PageTypes.cs" />
+    <Compile Include="NavigationFramework\AuditPageNavigation\AuditSwitchingLogic.cs" />
+    <Compile Include="Pdf\IPdfCanBeDrawed.cs" />
+    <Compile Include="Pdf\PdfKreator.cs" />
+    <Compile Include="Pdf\UserPdfDrawingScheme.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolKit\Effects\UnderlineEffect.cs" />
+    <Compile Include="ToolKit\Extensions\ImageResourceExtension.cs" />
+    <Compile Include="ToolKit\ValueConverters\Base64ToImageSourceConverter.cs" />
+    <Compile Include="ToolKit\ValueConverters\BoolToColorConverter.cs" />
+    <Compile Include="ToolKit\ValueConverters\BoolToGenericObjectConverter.cs" />
+    <Compile Include="ToolKit\ValueConverters\BoolToStringConverter.cs" />
+    <Compile Include="ToolKit\ValueConverters\CommentToFormatedStringConverter.cs" />
+    <Compile Include="ToolKit\ValueConverters\StringToBoolConverter.cs" />
+    <Compile Include="Validtion\IValidator.cs" />
+    <Compile Include="Validtion\PublishValidation.cs" />
+    <Compile Include="Validtion\Validators\EmailValidator.cs" />
+    <Compile Include="ViewModels\About\AboutPageViewModel.cs" />
+    <Compile Include="ViewModels\Audit\AssesmentViewViewModel.cs" />
+    <Compile Include="ViewModels\Audit\AuditPageViewModel.cs" />
+    <Compile Include="ViewModels\Audit\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Audit\EnterInfoViewViewModel.cs" />
+    <Compile Include="ViewModels\Audit\Helpers\CommentsManager.cs" />
+    <Compile Include="ViewModels\Audit\Helpers\ImagesManager.cs" />
+    <Compile Include="ViewModels\BasePageViewModel.cs" />
+    <Compile Include="ViewModels\IListenerViewModel.cs" />
+    <Compile Include="ViewModels\Audit\ImageViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\MainStartupPageViewModel.cs" />
+    <Compile Include="ViewModels\Audit\QuestionReviewViewViewModel.cs" />
+    <Compile Include="ViewModels\Audit\QuestionsListViewViewModel.cs" />
+    <Compile Include="ViewModels\Audit\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Audit\ReviewViewViewModel.cs" />
+    <Compile Include="ViewModels\Audit\PublishViewViewModel.cs" />
+    <Compile Include="ViewModels\PdfWebViewViewerPageViewModel.cs" />
+    <Compile Include="ViewModels\TrainingToolsMaterials\TrainingToolsMaterialsBlockViewViewModel.cs" />
+    <Compile Include="ViewModels\TrainingToolsMaterials\TrainingPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Webinars\WebinarBlockViewViewModel.cs" />
+    <Compile Include="ViewModels\Webinars\WebinarsPageViewModel.cs" />
+    <Compile Include="ViewModels\WebViewPageViewModel.cs" />
+    <Compile Include="Views\CompoundedViews\ActionBars\ActionBarBase.cs" />
+    <Compile Include="Views\CompoundedViews\ActionBars\CommonActionBar.xaml.cs">
+      <DependentUpon>CommonActionBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\AssesmentView.xaml.cs">
+      <DependentUpon>AssesmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\CommentItemView.xaml.cs">
+      <DependentUpon>CommentItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\ImageItemView.xaml.cs">
+      <DependentUpon>ImageItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\EnterInfoView.xaml.cs">
+      <DependentUpon>EnterInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\ActionBars\AuditActionBar.xaml.cs">
+      <DependentUpon>AuditActionBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\QuestionReviewView.xaml.cs">
+      <DependentUpon>QuestionReviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Menu\MenuBase.cs" />
+    <Compile Include="Views\CompoundedViews\Menu\MenuItemView.xaml.cs">
+      <DependentUpon>MenuItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Menu\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\EmptyStackListItemView.cs" />
+    <Compile Include="Views\CompoundedViews\Audits\QuestionView.xaml.cs">
+      <DependentUpon>QuestionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\QuestionsListView.xaml.cs">
+      <DependentUpon>QuestionsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\ReviewView.xaml.cs">
+      <DependentUpon>ReviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Audits\PublishView.xaml.cs">
+      <DependentUpon>PublishView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\TrainingToolsMaterials\TrainingToolsMaterialsBlockView.xaml.cs">
+      <DependentUpon>TrainingToolsMaterialsBlockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompoundedViews\Webinars\WebinarBlockView.xaml.cs">
+      <DependentUpon>WebinarBlockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ExtendedContentView.cs" />
+    <Compile Include="Views\Controls\ExtendedLabel.cs" />
+    <Compile Include="Views\Controls\ExtendedSimpleIndicator.xaml.cs">
+      <DependentUpon>ExtendedSimpleIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ExtendedWebView.cs" />
+    <Compile Include="Views\Controls\PdfWebViewViewer.cs" />
+    <Compile Include="Views\Controls\StackList.cs" />
+    <Compile Include="Views\Controls\StackListItemBase.cs" />
+    <Compile Include="Views\Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AuditPage.xaml.cs">
+      <DependentUpon>AuditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\BasePage.xaml.cs">
+      <DependentUpon>BasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\IWebViewBugPage.cs" />
+    <Compile Include="Views\Pages\IWebViewPage.cs" />
+    <Compile Include="Views\Pages\MainStartupPage.xaml.cs">
+      <DependentUpon>MainStartupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PdfWebViewViewerPage.xaml.cs">
+      <DependentUpon>PdfWebViewViewerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TrainingPage.xaml.cs">
+      <DependentUpon>TrainingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\WebinarsPage.xaml.cs">
+      <DependentUpon>WebinarsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\WebViewPage.xaml.cs">
+      <DependentUpon>WebViewPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Images\ic_answer_false.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_answer_true.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_close.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_close_grey.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_close_red.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_close_transparent_bg.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_comment_selected.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_comment_transparent_bg.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_image_selected.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_menu.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_ok_green.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_ok_transparent_bg.png" />
+    <EmbeddedResource Include="Resourses\Images\ic_plus_transparent_bg.png" />
+    <EmbeddedResource Include="Views\Pages\AuditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\WebinarsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\TrainingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Portable">
+      <HintPath>..\..\..\..\..\..\Desktop\SyncfusionEssentialStudio-14.3.0.49\SyncfusionEssentialStudio-14.3.0.49\lib\pcl\Syncfusion.Compression.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Portable">
+      <HintPath>..\..\..\..\..\..\Desktop\SyncfusionEssentialStudio-14.3.0.49\SyncfusionEssentialStudio-14.3.0.49\lib\pcl\Syncfusion.Pdf.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\ActionBars\CommonActionBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Menu\MenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Menu\MenuItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\QuestionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\CommentItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\ImageItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\MainStartupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_decline_no_border.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_decline_transparent_bg_with_border.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_ok_fill_green_bg.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_ok_transparent_bg_with_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_decline_white_no_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_ok_no_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_decline_fill_red_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\AssesmentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\EnterInfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\QuestionsListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Controls\ExtendedSimpleIndicator.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\ActionBars\AuditActionBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\ReviewView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\QuestionReviewView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_hamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_send_plane_in_circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_comment_not_selected.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_photo_not_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_comment_selected.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_photo_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_comment_round_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_decline_fill_grey_bg.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_plus_rounded_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_back_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_decline_no_border_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Audits\PublishView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\Webinars\WebinarBlockView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_calendar_gray.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_publisher_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\WebViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CompoundedViews\TrainingToolsMaterials\TrainingToolsMaterialsBlockView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_centralize.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_toolkit.png" />
+    <EmbeddedResource Include="Resourses\Img\ic_download_fill_blue_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\BasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\PdfWebViewViewerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resourses\Img\ic_close_blue_filled_white_bg.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
