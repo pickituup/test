@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using tpm.DependencyServices;
+using UIKit;
 
 [assembly: Xamarin.Forms.Dependency(typeof(tpm.iOS.Services.UseExternalComponentService))]
 namespace tpm.iOS.Services {
@@ -13,6 +14,11 @@ namespace tpm.iOS.Services {
         /// </summary>
         /// <param name="email"></param>
         public void IntentToSentMailWithPDF(string email) {
+            UIViewController topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            while (topController.PresentedViewController != null) {
+                topController = topController.PresentedViewController;
+            }
+
             string docsPath = FileHelperService.GetInternalTpmDirPath();
             string fullFilePath = System.IO.Path.Combine(docsPath, FileHelperService.GENERATED_PDF_FILE_NAME);
 
@@ -27,6 +33,8 @@ namespace tpm.iOS.Services {
                 controller.Finished += (object sender, MFComposeResultEventArgs e) => {
                     e.Controller.DismissViewController(true, null);
                 };
+
+                topController.PresentModalViewController(controller, true);
             }
         }
     }

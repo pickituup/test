@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: Emanuel Ashiedu (ZCN7P946G7)</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchFastDev>True</MtouchFastDev>
     <MtouchUseSGen>True</MtouchUseSGen>
@@ -37,6 +37,7 @@
     <MtouchEnableBitcode>False</MtouchEnableBitcode>
     <OptimizePNGs>True</OptimizePNGs>
     <MtouchFloat32>False</MtouchFloat32>
+    <CodesignProvision>TpmDistributionAdHocProvisioningProfile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -44,7 +45,7 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Emanuel Ashiedu (2QPFG92276)</CodesignKey>
     <MtouchUseSGen>true</MtouchUseSGen>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
@@ -55,6 +56,10 @@
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
     <BuildIpa>true</BuildIpa>
+    <CodesignProvision>TpmDistributionAdHocProvisioningProfile</CodesignProvision>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -79,7 +84,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Emanuel Ashiedu (2QPFG92276)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>True</MtouchDebug>
     <MtouchFastDev>true</MtouchFastDev>
@@ -94,6 +99,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <IOSDebugOverWiFi>False</IOSDebugOverWiFi>
     <IOSDebuggerPort>10000</IOSDebuggerPort>
+    <CodesignProvision>TPMDevelopmentProvisioningProfile</CodesignProvision>
+    <MtouchSdkVersion>10.3</MtouchSdkVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DataAccess">

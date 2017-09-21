@@ -74,7 +74,7 @@
                 Margin="7,0,0,0"
                 Grid.Column="1"
                 VerticalOptions="Center"
-                FontSize="Large"
+                FontSize="{StaticResource Key=LargeFontSizeValue}"
                 Text="{Binding Path=ActionBarHeader}"/>
 
             <!--<StackLayout

@@ -1,18 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Application 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:menus="clr-namespace:tpm.Views.CompoundedViews.Menu"
-    x:Class="tpm.App">
+<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="tpm.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:menus="clr-namespace:tpm.Views.CompoundedViews.Menu">
     <Application.Resources>
         <ResourceDictionary>
-            <!--TODO: remove that 3 colors-->
-            <Color
-                x:Key="appGrayColorDark_Color">#c6c6c6</Color>
-            <Color
-                x:Key="appGrayColorLight_Color">#ececec</Color>
-            <Color
-                x:Key="main_text_color">#202125</Color>
+            <OnPlatform
+                x:Key="DefaultFontSize"
+                x:TypeArguments="x:Double"
+                iOS="12.0" />
+
+            <Style BaseResourceKey="DefaultFontSize" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource Key=DefaultFontSize}" />
+            </Style>
+
+            <OnPlatform
+                x:Key="LargeFontSizeValue"
+                x:TypeArguments="x:Double"
+                Android="18.0"
+                iOS="18.0" />
+
+            <OnPlatform
+                x:Key="MicroFontSizeValue"
+                x:TypeArguments="x:Double"
+                Android="10.0"
+                iOS="10.0" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

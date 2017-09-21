@@ -122,7 +122,7 @@
                         <Label
                             VerticalOptions="Center"
                             Text="{Binding Path=TrainingsToolItem.FirstItemTitle}"
-                            FontSize="Micro"/>
+                            FontSize="{StaticResource Key=MicroFontSizeValue}"/>
                     </StackLayout>
 
                     <!--Second item-->
@@ -133,7 +133,7 @@
                         Orientation="Horizontal">
                         <Label
                             TextColor="#c1c1cf"
-                            FontSize="Micro"
+                            FontSize="{StaticResource Key=MicroFontSizeValue}"
                             VerticalOptions="Center"
                             Text="{Binding Path=TrainingsToolItem.SecondItemTitle}"/>
                         <Image
