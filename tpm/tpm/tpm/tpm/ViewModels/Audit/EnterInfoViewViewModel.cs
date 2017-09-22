@@ -161,7 +161,7 @@ namespace tpm.ViewModels {
                     Group = generalGroup
                 },
                 new Question() {
-                    QuestionMessage = "Are ladder rungs, steps and cleats Level and uniformly spaced? (Make the determination when the ladder in in position for use.)",
+                    QuestionMessage = "Are ladder rungs, steps and cleats level and uniformly spaced? (Make the determination when the ladder is in position for use)",
                     IfNoAnswer = "Repair or replace the ladder.",
                     Group = laddersGroup
                 },
@@ -171,12 +171,12 @@ namespace tpm.ViewModels {
                     Group = laddersGroup
                 },
                 new Question() {
-                    QuestionMessage = "Are ladder rungs, steps and cleats have a minimum width of 11.5 inches on portable ladders?",
+                    QuestionMessage = "Do ladder rungs, steps and cleats have a minimum width of 11.5 inches on portable ladders?",
                     IfNoAnswer = "Repair or replace the ladder.",
                     Group = laddersGroup
                 },
                 new Question() {
-                    QuestionMessage = "Are ladder rungs, steps and cleats have a minimum width of 16 inches for fixed ladders?",
+                    QuestionMessage = "Do ladder rungs, steps and cleats have a minimum width of 16 inches for fixed ladders?",
                     IfNoAnswer = "Repair or replace the ladder.",
                     Group = laddersGroup
                 },
